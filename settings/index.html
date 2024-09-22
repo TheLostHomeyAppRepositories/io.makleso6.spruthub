@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- The '/homey.js' script must be included in your settings view to work -->
+    <script type="text/javascript" src="/homey.js" data-origin="settings"></script>
+</head>
+
+<body>
+
+    <fieldset class="homey-form-fieldset">
+        <legend class="homey-form-legend">SprutHub Settings</legend>
+
+        <div class="homey-form-group">
+            <label class="homey-form-label" for="address">IP Адрес (без порта)</label>
+            <input class="homey-form-input" id="address" type="text" value="" />
+        </div>
+        <div class="homey-form-group">
+            <label class="homey-form-label" for="password">Токен</label>
+            <input class="homey-form-input" id="password" type="password" value="" />
+        </div>
+        <div class="homey-form-group"></div>
+            <label class="homey-form-label" for="serial">Серийный номер</label>
+            <input class="homey-form-input" id="serial" type="text" value="" />
+        </div>
+    </fieldset>
+
+    <button id="save" class="homey-button-primary-full">Save changes</button>
+
+    <script type="text/javascript">
+        // a method named 'onHomeyReady' must be present in your code
+        function onHomeyReady(Homey) {
+            // Tell Homey we're ready to be displayed
+            Homey.ready();
+
+            var usernameElement = document.getElementById("address");
+            var passwordElement = document.getElementById("password");
+            var serialElement = document.getElementById("serial");
+            var saveElement = document.getElementById("save");
+
+            Homey.get("username", function (err, username) {
+                if (err) return Homey.alert(err);
+                usernameElement.value = username;
+            });
+
+            Homey.get("password", function (err, password) {
+                if (err) return Homey.alert(err);
+                passwordElement.value = password;
+            });
+
+            Homey.get("serial", function (err, serial) {
+                if (err) return Homey.alert(err);
+                serialElement.value = serial;
+            });
+
+            saveElement.addEventListener("click", function (e) {
+                Homey.set("username", usernameElement.value, function (err) {
+                    if (err) return Homey.alert(err);
+                });
+                Homey.set("password", passwordElement.value, function (err) {
+                    if (err) return Homey.alert(err);
+                });
+                Homey.set("serial", serialElement.value, function (err) {
+                    if (err) return Homey.alert(err);
+                });
+            });
+        }
+    </script>
+</body>
+
+</html>

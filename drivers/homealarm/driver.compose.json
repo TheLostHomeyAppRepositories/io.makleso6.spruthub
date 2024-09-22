@@ -1,0 +1,14 @@
+{
+    "class": "homealarm",
+    "name": {
+      "en": "Homealarm",
+      "ru": "Сигнализация"
+    },
+    "images": {
+      "small": "{{ driverAssetsPath }}/images/small.png",
+      "large": "{{ driverAssetsPath }}/images/large.png",
+      "xlarge": "{{ driverAssetsPath }}/images/xlarge.png"
+    },
+    "capabilities": [],
+    "$extends": [ "pair" ]
+  }

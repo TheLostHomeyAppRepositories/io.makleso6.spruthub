@@ -1,0 +1,29 @@
+{
+  "title": {
+    "en": "Set Mode",
+    "ru": "Установить режим"
+  },
+  "titleFormatted": {
+    "en": "Set fan speed to [[speed]]",
+    "ru": "Установить скорость вентилятора  на [[speed]]"
+  },
+  "args": [
+    {
+      "type": "autocomplete",
+      "name": "speed",
+      "title": "Скорость"
+    },
+    {
+      "name": "device",
+      "type": "device",
+      "placeholder": {
+        "en": "Select",
+        "ru": "Выберите"
+      },
+      "filter": "driver_id=thermostat"
+    }
+  ],
+  "platforms": [
+    "local"
+  ]
+}

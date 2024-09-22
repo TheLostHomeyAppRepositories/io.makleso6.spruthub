@@ -1,0 +1,152 @@
+import WebSocket from 'ws';
+import { Accessory, Service, Characteristic } from "./objects";
+import { EventEmitter } from 'events';
+
+type Credentials = {
+    address: string,
+    email: string,
+    password: string,
+    token?: string
+};
+
+type HubInfo = {
+    address: string,
+    token: string,
+    cid: String
+}
+
+export default class Client {
+    private client!: WebSocketClient;
+
+    accessory: Accessory;
+    service: Service;
+    characteristic: Characteristic;
+
+    // private listeners: Map<string, EventEmitter> = new Map();
+    private emitter = new EventEmitter();   
+
+    constructor() {
+        this.accessory = new Accessory(this);
+        this.service = new Service(this);
+        this.characteristic = new Characteristic(this);
+     }
+    
+    async connect(credentials: HubInfo) {
+        this.emitter.setMaxListeners(0);
+        this.client = new WebSocketClient(credentials);
+        await this.client.connect();
+        this.client.subscribe( (response) => {
+            if (response.event !== undefined){
+                if (response.event.characteristic !== undefined) {
+                    if (response.event.characteristic.event == 'EVENT_UPDATE') {
+                        this.eventUpdate(response.event.characteristic.characteristics)
+                    }
+                } else if (response.event.accessory !== undefined) {
+                    if (response.event.accessory.event == 'EVENT_UPDATE') {
+                        this.eventStatus(response.event.accessory.accessories)
+                    }
+                }
+            }
+        });
+    }
+    async loadDevices() {
+        await this.accessory.list();
+    }
+
+    eventUpdate(value: any) {
+        this.emitter.emit('characteristicEvent', value)
+    }
+
+    eventStatus(value: any) {
+        this.emitter.emit('status', value)
+    }
+
+    async call(params: any = {}): Promise<any> {
+        return await this.client.call(params);
+    }
+
+    subscribeCharacteristicsEvent(callback: (response: any) => void) {
+        this.emitter.on('characteristicEvent', (characteristics) => {
+            const chs = characteristics.map((c: any) => c.control ? c : {
+                aId: c.aId,
+                sId: c.sId,
+                cId: c.cId,
+                control: {value: c.value}
+            });
+            callback(chs);
+        });
+    }
+
+    unsubscribeCharacteristicsEvent(callback: (response: any) => void) {
+        this.emitter.off('characteristicEvent', callback)
+    }
+
+    subscribeStatusEvent(callback: (response: any) => void) {
+        this.emitter.on('status', callback)
+    }
+
+    unsubscribeStatusEvent(callback: (response: any) => void) {
+        this.emitter.off('status', callback)
+    }
+}
+
+class WebSocketClient {
+    private ws: WebSocket;
+    private currentId: number;
+    private credentials: HubInfo;
+
+    constructor(credentials: HubInfo) {
+        this.credentials = credentials;
+        this.ws = new WebSocket(`ws://${credentials.address}:80/spruthub`);
+
+        this.ws.on('close', () => {
+            console.log('WS CLOSE')
+        });
+
+        this.ws.on('error', (error) => {
+            console.log('WS ERROR', error);
+        });
+
+        this.currentId = 1;
+    }
+
+    async connect(): Promise<void> {
+        return new Promise<void>((resolve) => {
+            this.ws.on('open', () => {
+                resolve();
+            });
+        });
+    }
+
+    async call(params: any = {}): Promise<any> {
+        const message = {
+            params: params,
+            id: this.currentId,
+            cid: this.credentials.cid,
+            token: this.credentials.token 
+        };
+        this.ws.send(JSON.stringify(message));
+
+        this.currentId++;
+        if (this.currentId > 100) {
+            this.currentId = 1
+        }
+        return new Promise((resolve) => {
+            const handleResponse = (event: WebSocket.MessageEvent) => {
+                const data = JSON.parse(event.data.toString());
+                if (data.id === message.id) {
+                    this.ws.removeEventListener("message", handleResponse);
+                    resolve(data.result);
+                }
+            };
+            this.ws.addEventListener("message", handleResponse);
+        });
+    }
+
+    subscribe(callback: (response: any) => void) {
+        this.ws.addEventListener("message", (event: WebSocket.MessageEvent) => {
+            const data = JSON.parse(event.data.toString());
+            callback(data);
+        });
+    }
+}

@@ -1,0 +1,23 @@
+{
+  "triggers": [
+    {
+      "id": "button_click",
+      "highlight": true,
+      "title": "Кнопка была нажата",
+      "titleFormatted": "Кнопка была нажата"
+    },
+    {
+      "id": "button_clicks",
+      "highlight": true,
+      "title": "Кнопка была нажата",
+      "titleFormatted": "Кнопка была нажата: [[click_type]]",
+      "args": [
+        {
+          "type": "autocomplete",
+          "name": "click_type",
+          "title": "Тип клика"
+        }
+      ]
+    }
+  ]
+}

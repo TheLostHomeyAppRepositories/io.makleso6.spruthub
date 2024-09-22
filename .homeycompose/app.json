@@ -1,0 +1,28 @@
+{
+  "id": "io.makleso6.spruthub",
+  "version": "1.0.0",
+  "compatibility": ">=12.0.0",
+  "sdk": 3,
+  "platforms": [
+    "local"
+  ],
+  "name": {
+    "en": "SprutHub"
+  },
+  "description": {
+    "en": "Connect SprutHub devices to Homey"
+  },
+  "category": [
+    "appliances"
+  ],
+  "permissions": ["homey:manager:api"],
+  "images": {
+    "small": "/assets/images/small.png",
+    "large": "/assets/images/large.png",
+    "xlarge": "/assets/images/xlarge.png"
+  },
+  "author": {
+    "name": "Maxim Kolesnik",
+    "email": "makleso6@yandex.ru"
+  }
+}

@@ -1,0 +1,491 @@
+{
+  "_comment": "This file is generated. Please edit .homeycompose/app.json instead.",
+  "id": "io.makleso6.spruthub",
+  "version": "1.0.0",
+  "compatibility": ">=12.0.0",
+  "sdk": 3,
+  "platforms": [
+    "local"
+  ],
+  "name": {
+    "en": "SprutHub"
+  },
+  "description": {
+    "en": "Connect SprutHub devices to Homey"
+  },
+  "category": [
+    "appliances"
+  ],
+  "permissions": [
+    "homey:manager:api"
+  ],
+  "images": {
+    "small": "/assets/images/small.png",
+    "large": "/assets/images/large.png",
+    "xlarge": "/assets/images/xlarge.png"
+  },
+  "author": {
+    "name": "Maxim Kolesnik",
+    "email": "makleso6@yandex.ru"
+  },
+  "flow": {
+    "actions": [
+      {
+        "title": {
+          "en": "Set Mode",
+          "ru": "Установить режим"
+        },
+        "titleFormatted": {
+          "en": "Set fan speed to [[speed]]",
+          "ru": "Установить скорость вентилятора  на [[speed]]"
+        },
+        "args": [
+          {
+            "type": "autocomplete",
+            "name": "speed",
+            "title": "Скорость"
+          },
+          {
+            "name": "device",
+            "type": "device",
+            "placeholder": {
+              "en": "Select",
+              "ru": "Выберите"
+            },
+            "filter": "driver_id=thermostat"
+          }
+        ],
+        "platforms": [
+          "local"
+        ],
+        "id": "fanSpeed"
+      }
+    ],
+    "triggers": [
+      {
+        "id": "button_click",
+        "highlight": true,
+        "title": "Кнопка была нажата",
+        "titleFormatted": "Кнопка была нажата",
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=button"
+          }
+        ]
+      },
+      {
+        "id": "button_clicks",
+        "highlight": true,
+        "title": "Кнопка была нажата",
+        "titleFormatted": "Кнопка была нажата: [[click_type]]",
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=button"
+          },
+          {
+            "type": "autocomplete",
+            "name": "click_type",
+            "title": "Тип клика"
+          }
+        ]
+      }
+    ]
+  },
+  "drivers": [
+    {
+      "pair": [
+        {
+          "id": "login_credentials",
+          "template": "login_credentials",
+          "options": {
+            "usernameLabel": {
+              "en": "IP address",
+              "ru": "IP Адрес"
+            },
+            "usernamePlaceholder": "192.168.1.1",
+            "passwordLabel": {
+              "en": "Token",
+              "ru": "Токен"
+            },
+            "passwordPlaceholder": {
+              "en": "Token",
+              "ru": "Токен"
+            }
+          }
+        },
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "class": "airpurifier",
+      "name": {
+        "en": "Airpurifier",
+        "ru": "Очиститель воздуха"
+      },
+      "images": {
+        "small": "{{ driverAssetsPath }}/images/small.png",
+        "large": "{{ driverAssetsPath }}/images/large.png",
+        "xlarge": "{{ driverAssetsPath }}/images/xlarge.png"
+      },
+      "capabilities": [],
+      "id": "airpurifier"
+    },
+    {
+      "pair": [
+        {
+          "id": "login_credentials",
+          "template": "login_credentials",
+          "options": {
+            "usernameLabel": {
+              "en": "IP address",
+              "ru": "IP Адрес"
+            },
+            "usernamePlaceholder": "192.168.1.1",
+            "passwordLabel": {
+              "en": "Token",
+              "ru": "Токен"
+            },
+            "passwordPlaceholder": {
+              "en": "Token",
+              "ru": "Токен"
+            }
+          }
+        },
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "class": "other",
+      "name": {
+        "en": "Buttons",
+        "ru": "Кнопки"
+      },
+      "images": {
+        "small": "{{ driverAssetsPath }}/images/small.png",
+        "large": "{{ driverAssetsPath }}/images/large.png",
+        "xlarge": "{{ driverAssetsPath }}/images/xlarge.png"
+      },
+      "capabilities": [],
+      "id": "button"
+    },
+    {
+      "pair": [
+        {
+          "id": "login_credentials",
+          "template": "login_credentials",
+          "options": {
+            "usernameLabel": {
+              "en": "IP address",
+              "ru": "IP Адрес"
+            },
+            "usernamePlaceholder": "192.168.1.1",
+            "passwordLabel": {
+              "en": "Token",
+              "ru": "Токен"
+            },
+            "passwordPlaceholder": {
+              "en": "Token",
+              "ru": "Токен"
+            }
+          }
+        },
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "class": "homealarm",
+      "name": {
+        "en": "Homealarm",
+        "ru": "Сигнализация"
+      },
+      "images": {
+        "small": "{{ driverAssetsPath }}/images/small.png",
+        "large": "{{ driverAssetsPath }}/images/large.png",
+        "xlarge": "{{ driverAssetsPath }}/images/xlarge.png"
+      },
+      "capabilities": [],
+      "id": "homealarm"
+    },
+    {
+      "pair": [
+        {
+          "id": "login_credentials",
+          "template": "login_credentials",
+          "options": {
+            "usernameLabel": {
+              "en": "IP address",
+              "ru": "IP Адрес"
+            },
+            "usernamePlaceholder": "192.168.1.1",
+            "passwordLabel": {
+              "en": "Token",
+              "ru": "Токен"
+            },
+            "passwordPlaceholder": {
+              "en": "Token",
+              "ru": "Токен"
+            }
+          }
+        },
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "class": "light",
+      "name": {
+        "en": "Lights",
+        "ru": "Лампочки"
+      },
+      "images": {
+        "small": "{{ driverAssetsPath }}/images/small.png",
+        "large": "{{ driverAssetsPath }}/images/large.png",
+        "xlarge": "{{ driverAssetsPath }}/images/xlarge.png"
+      },
+      "capabilities": [],
+      "id": "light"
+    },
+    {
+      "pair": [
+        {
+          "id": "login_credentials",
+          "template": "login_credentials",
+          "options": {
+            "usernameLabel": {
+              "en": "IP address",
+              "ru": "IP Адрес"
+            },
+            "usernamePlaceholder": "192.168.1.1",
+            "passwordLabel": {
+              "en": "Token",
+              "ru": "Токен"
+            },
+            "passwordPlaceholder": {
+              "en": "Token",
+              "ru": "Токен"
+            }
+          }
+        },
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "class": "sensor",
+      "name": {
+        "en": "Sensors",
+        "ru": "Сенсоры"
+      },
+      "images": {
+        "small": "{{ driverAssetsPath }}/images/small.png",
+        "large": "{{ driverAssetsPath }}/images/large.png",
+        "xlarge": "{{ driverAssetsPath }}/images/xlarge.png"
+      },
+      "capabilities": [],
+      "id": "sensor"
+    },
+    {
+      "pair": [
+        {
+          "id": "login_credentials",
+          "template": "login_credentials",
+          "options": {
+            "usernameLabel": {
+              "en": "IP address",
+              "ru": "IP Адрес"
+            },
+            "usernamePlaceholder": "192.168.1.1",
+            "passwordLabel": {
+              "en": "Token",
+              "ru": "Токен"
+            },
+            "passwordPlaceholder": {
+              "en": "Token",
+              "ru": "Токен"
+            }
+          }
+        },
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "class": "socket",
+      "name": {
+        "en": "Switch",
+        "ru": "Переключатели"
+      },
+      "images": {
+        "small": "{{ driverAssetsPath }}/images/small.png",
+        "large": "{{ driverAssetsPath }}/images/large.png",
+        "xlarge": "{{ driverAssetsPath }}/images/xlarge.png"
+      },
+      "capabilities": [],
+      "id": "socket"
+    },
+    {
+      "pair": [
+        {
+          "id": "login_credentials",
+          "template": "login_credentials",
+          "options": {
+            "usernameLabel": {
+              "en": "IP address",
+              "ru": "IP Адрес"
+            },
+            "usernamePlaceholder": "192.168.1.1",
+            "passwordLabel": {
+              "en": "Token",
+              "ru": "Токен"
+            },
+            "passwordPlaceholder": {
+              "en": "Token",
+              "ru": "Токен"
+            }
+          }
+        },
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "class": "thermostat",
+      "name": {
+        "en": "Thermostat",
+        "ru": "Термостат"
+      },
+      "images": {
+        "small": "{{ driverAssetsPath }}/images/small.png",
+        "large": "{{ driverAssetsPath }}/images/large.png",
+        "xlarge": "{{ driverAssetsPath }}/images/xlarge.png"
+      },
+      "capabilities": [],
+      "id": "thermostat"
+    }
+  ],
+  "capabilities": {
+    "fan_speed": {
+      "type": "enum",
+      "title": {
+        "en": "Fan Speed",
+        "ru": "Скорость Вентилятора"
+      },
+      "values": [
+        {
+          "id": "auto",
+          "title": {
+            "en": "Auto",
+            "ru": "Авто"
+          }
+        },
+        {
+          "id": "quite",
+          "title": {
+            "en": "Quite",
+            "ru": "Тихий"
+          }
+        },
+        {
+          "id": "low",
+          "title": {
+            "en": "Low",
+            "ru": "Медленно"
+          }
+        },
+        {
+          "id": "medium",
+          "title": {
+            "en": "Medium",
+            "ru": "Средне"
+          }
+        },
+        {
+          "id": "high",
+          "title": {
+            "en": "High",
+            "ru": "Быстро"
+          }
+        },
+        {
+          "id": "turbo",
+          "title": {
+            "en": "Turbo",
+            "ru": "Турбо"
+          }
+        }
+      ],
+      "getable": true,
+      "setable": true
+    },
+    "rotation_speed": {
+      "type": "number",
+      "title": {
+        "en": "Rotation Speed",
+        "ru": "Скорость Вращения"
+      },
+      "getable": true,
+      "setable": true,
+      "min": 0,
+      "max": 100,
+      "decimals": 0,
+      "uiComponent": "slider",
+      "chartType": "stepLine"
+    }
+  }
+}

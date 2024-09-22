@@ -1,0 +1,14 @@
+{
+  "type": "number",
+  "title": {
+    "en": "Rotation Speed",
+    "ru": "Скорость Вращения"
+  },
+  "getable": true,
+  "setable": true,
+  "min": 0,
+  "max": 100,
+  "decimals": 0,
+  "uiComponent": "slider",
+  "chartType": "stepLine"
+}

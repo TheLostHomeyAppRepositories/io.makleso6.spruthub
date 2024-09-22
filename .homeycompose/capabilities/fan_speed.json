@@ -1,0 +1,53 @@
+{
+    "type": "enum",
+    "title": {
+      "en": "Fan Speed",
+      "ru": "Скорость Вентилятора"
+    },
+    "values": [
+      {
+        "id": "auto",
+        "title": {
+          "en": "Auto",
+          "ru": "Авто"
+        }
+      },
+      {
+        "id": "quite",
+        "title": {
+          "en": "Quite",
+          "ru": "Тихий"
+        }
+      },
+      {
+        "id": "low",
+        "title": {
+          "en": "Low",
+          "ru": "Медленно"
+        }
+      },
+      {
+        "id": "medium",
+        "title": {
+          "en": "Medium",
+          "ru": "Средне"
+        }
+      },
+      {
+        "id": "high",
+        "title": {
+          "en": "High",
+          "ru": "Быстро"
+        }
+      },
+      {
+        "id": "turbo",
+        "title": {
+          "en": "Turbo",
+          "ru": "Турбо"
+        }
+      }
+    ],
+    "getable": true,
+    "setable": true
+  }
