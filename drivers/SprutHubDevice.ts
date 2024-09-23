@@ -29,7 +29,6 @@ export class SprutHubDevice extends Homey.Device {
         this.subscribeCharacteristicsUpdate()
 
         const device = (await (this.driver as SprutHubDriver).getAccessory(data.aid))
-        console.log(device)
         if (device.online) {
             console.log
             await this.setAvailable()

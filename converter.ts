@@ -190,7 +190,8 @@ export const DEVICE_OPTIONS: {
 const VALID_VALUES_TYPES: string[] = [
     "TargetHeatingCoolingState",
     "SecuritySystemTargetState",
-    "C_FanSpeed"
+    "C_FanSpeed",
+    "C_TargetPositionState"
 ]
 
 const MIN_MAX_CONVERTED: string[] = [
@@ -361,7 +362,7 @@ export class Converter {
         return data
     }
 
-    getCharacteristicOptions(characteristic: CharacteristicMessage) {
+    getCharacteristicOptions(characteristic: CharacteristicMessage): any {
         if (!getCharacteristicControl(characteristic).type) return {};
         let options = {};
         const control = getCharacteristicControl(characteristic);
