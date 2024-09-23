@@ -28,7 +28,10 @@ export class SprutHubDevice extends Homey.Device {
         }
         this.subscribeCharacteristicsUpdate()
 
-        if ((await (this.driver as SprutHubDriver).getAccessory(data.aid)).status === 0) {
+        const device = (await (this.driver as SprutHubDriver).getAccessory(data.aid))
+        console.log(device)
+        if (device.online) {
+            console.log
             await this.setAvailable()
         } else {
             await this.setUnavailable('device offline');
@@ -37,6 +40,7 @@ export class SprutHubDevice extends Homey.Device {
 
     async onDeleted() {
         this.app.client.unsubscribeCharacteristicsEvent(this.onCharacteristic);
+        this.app.client.unsubscribeCharacteristicsEvent(this.onStatus);
     }
 
     subscribeCharacteristicsUpdate() {
@@ -45,9 +49,10 @@ export class SprutHubDevice extends Homey.Device {
     }
 
     onStatus = async (accessories: any) => {
+        console.log(accessories);
         for (let a of accessories) {
             if (a.id !== this.service.aId) return;
-            if (a.status === 0) {
+            if (a.online === true) {
                 await this.setAvailable()
             } else {
                 await this.setUnavailable('device offline');

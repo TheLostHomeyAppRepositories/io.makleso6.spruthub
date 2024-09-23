@@ -7,6 +7,7 @@ export class SprutHubDriver extends Homey.Driver {
     async onInit() {
         this.log('SprutHubDriver has been initialized');
         this.app = this.homey.app as SprutHub;
+
     }
 
     async onPair(session: Homey.Driver.PairSession) {

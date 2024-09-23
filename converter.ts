@@ -86,7 +86,7 @@ export const HOMEY_CAPABILITIES: {
     windowcoverings_tilt_down: [],
     windowcoverings_tilt_set: [],
     windowcoverings_closed: [],
-    windowcoverings_set: [],
+    windowcoverings_set: ["TargetPosition"],
     button: [],
     speaker_playing: [],
     speaker_next: [],

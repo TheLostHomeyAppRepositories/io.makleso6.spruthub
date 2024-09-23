@@ -221,6 +221,52 @@
           "template": "add_devices"
         }
       ],
+      "class": "curtain",
+      "name": {
+        "en": "Curtain",
+        "ru": "Штора"
+      },
+      "images": {
+        "small": "{{ driverAssetsPath }}/images/small.png",
+        "large": "{{ driverAssetsPath }}/images/large.png",
+        "xlarge": "{{ driverAssetsPath }}/images/xlarge.png"
+      },
+      "capabilities": [],
+      "id": "curtain"
+    },
+    {
+      "pair": [
+        {
+          "id": "login_credentials",
+          "template": "login_credentials",
+          "options": {
+            "usernameLabel": {
+              "en": "IP address",
+              "ru": "IP Адрес"
+            },
+            "usernamePlaceholder": "192.168.1.1",
+            "passwordLabel": {
+              "en": "Token",
+              "ru": "Токен"
+            },
+            "passwordPlaceholder": {
+              "en": "Token",
+              "ru": "Токен"
+            }
+          }
+        },
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
       "class": "homealarm",
       "name": {
         "en": "Homealarm",

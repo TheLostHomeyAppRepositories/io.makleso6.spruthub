@@ -17,7 +17,7 @@ export type AccessoryMessage = {
     /** Идентификатор */
     id: number,
     /** Статус доступно или нет */
-    status: number,
+    online: boolean,
     /** Эндпоинт */
     endpoint: number,
     /** Название */
