@@ -140,7 +140,27 @@
         "xlarge": "{{ driverAssetsPath }}/images/xlarge.png"
       },
       "capabilities": [],
-      "id": "airpurifier"
+      "id": "airpurifier",
+      "settings": [
+        {
+          "type": "group",
+          "label": {
+            "en": "Device Settings",
+            "ru": "Настройки устройства"
+          },
+          "children": [
+            {
+              "id": "room",
+              "type": "label",
+              "value": "",
+              "label": {
+                "en": "Room",
+                "ru": "Комната"
+              }
+            }
+          ]
+        }
+      ]
     },
     {
       "pair": [
@@ -186,7 +206,27 @@
         "xlarge": "{{ driverAssetsPath }}/images/xlarge.png"
       },
       "capabilities": [],
-      "id": "button"
+      "id": "button",
+      "settings": [
+        {
+          "type": "group",
+          "label": {
+            "en": "Device Settings",
+            "ru": "Настройки устройства"
+          },
+          "children": [
+            {
+              "id": "room",
+              "type": "label",
+              "value": "",
+              "label": {
+                "en": "Room",
+                "ru": "Комната"
+              }
+            }
+          ]
+        }
+      ]
     },
     {
       "pair": [
@@ -232,7 +272,27 @@
         "xlarge": "{{ driverAssetsPath }}/images/xlarge.png"
       },
       "capabilities": [],
-      "id": "curtain"
+      "id": "curtain",
+      "settings": [
+        {
+          "type": "group",
+          "label": {
+            "en": "Device Settings",
+            "ru": "Настройки устройства"
+          },
+          "children": [
+            {
+              "id": "room",
+              "type": "label",
+              "value": "",
+              "label": {
+                "en": "Room",
+                "ru": "Комната"
+              }
+            }
+          ]
+        }
+      ]
     },
     {
       "pair": [
@@ -278,7 +338,27 @@
         "xlarge": "{{ driverAssetsPath }}/images/xlarge.png"
       },
       "capabilities": [],
-      "id": "homealarm"
+      "id": "homealarm",
+      "settings": [
+        {
+          "type": "group",
+          "label": {
+            "en": "Device Settings",
+            "ru": "Настройки устройства"
+          },
+          "children": [
+            {
+              "id": "room",
+              "type": "label",
+              "value": "",
+              "label": {
+                "en": "Room",
+                "ru": "Комната"
+              }
+            }
+          ]
+        }
+      ]
     },
     {
       "pair": [
@@ -324,7 +404,27 @@
         "xlarge": "{{ driverAssetsPath }}/images/xlarge.png"
       },
       "capabilities": [],
-      "id": "light"
+      "id": "light",
+      "settings": [
+        {
+          "type": "group",
+          "label": {
+            "en": "Device Settings",
+            "ru": "Настройки устройства"
+          },
+          "children": [
+            {
+              "id": "room",
+              "type": "label",
+              "value": "",
+              "label": {
+                "en": "Room",
+                "ru": "Комната"
+              }
+            }
+          ]
+        }
+      ]
     },
     {
       "pair": [
@@ -370,7 +470,27 @@
         "xlarge": "{{ driverAssetsPath }}/images/xlarge.png"
       },
       "capabilities": [],
-      "id": "sensor"
+      "id": "sensor",
+      "settings": [
+        {
+          "type": "group",
+          "label": {
+            "en": "Device Settings",
+            "ru": "Настройки устройства"
+          },
+          "children": [
+            {
+              "id": "room",
+              "type": "label",
+              "value": "",
+              "label": {
+                "en": "Room",
+                "ru": "Комната"
+              }
+            }
+          ]
+        }
+      ]
     },
     {
       "pair": [
@@ -416,7 +536,27 @@
         "xlarge": "{{ driverAssetsPath }}/images/xlarge.png"
       },
       "capabilities": [],
-      "id": "socket"
+      "id": "socket",
+      "settings": [
+        {
+          "type": "group",
+          "label": {
+            "en": "Device Settings",
+            "ru": "Настройки устройства"
+          },
+          "children": [
+            {
+              "id": "room",
+              "type": "label",
+              "value": "",
+              "label": {
+                "en": "Room",
+                "ru": "Комната"
+              }
+            }
+          ]
+        }
+      ]
     },
     {
       "pair": [
@@ -462,7 +602,27 @@
         "xlarge": "{{ driverAssetsPath }}/images/xlarge.png"
       },
       "capabilities": [],
-      "id": "thermostat"
+      "id": "thermostat",
+      "settings": [
+        {
+          "type": "group",
+          "label": {
+            "en": "Device Settings",
+            "ru": "Настройки устройства"
+          },
+          "children": [
+            {
+              "id": "room",
+              "type": "label",
+              "value": "",
+              "label": {
+                "en": "Room",
+                "ru": "Комната"
+              }
+            }
+          ]
+        }
+      ]
     }
   ],
   "capabilities": {

@@ -16,6 +16,10 @@ export class SprutHubDevice extends Homey.Device {
 
     async onInit() {
         super.onInit()
+
+        // const s = this.getSettings();
+        // this.setSettings({room: "test"})
+        // console.log(s);
         this.log('SprutHubDevice has been initialized');
         this.app = this.homey.app as SprutHub;
         const data = this.getData()
@@ -34,6 +38,12 @@ export class SprutHubDevice extends Homey.Device {
             await this.setAvailable()
         } else {
             await this.setUnavailable('device offline');
+        }
+
+        const accessoryInformation = await (this.driver as SprutHubDriver).getServiceWithType(data.aid, 'AccessoryInformation')
+        const room = accessoryInformation?.characteristics?.find(c => c.control?.type === "C_Room")?.control?.value.stringValue
+        if (room) {
+            this.setSettings({room: room})
         }
     }
 

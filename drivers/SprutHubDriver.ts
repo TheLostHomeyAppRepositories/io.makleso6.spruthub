@@ -59,7 +59,7 @@ export class SprutHubDriver extends Homey.Driver {
     async getDevicesWithType(type: String) {
         const accessories = await this.getAccessories(true);
         const devices: {}[] = [];
-
+        
         accessories.forEach(accessory => {
             accessory.services?.forEach(service => {
                 if (service.type === type) {
