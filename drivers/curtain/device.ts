@@ -6,8 +6,6 @@ class CurtainDevice extends SprutHubDevice {
         for (const characteristic of this.service.characteristics!) {
             if (characteristic.control?.type === "C_TargetPositionState") {
                 const characteristicOptions = this.app.converter.getCharacteristicOptions(characteristic);
-                console.log(characteristicOptions);
-
                 if (characteristicOptions.values) {
                     if (!this.hasCapability("windowcoverings_state")) {
                         this.addCapability("windowcoverings_state")

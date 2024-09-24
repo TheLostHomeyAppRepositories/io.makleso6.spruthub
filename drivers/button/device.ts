@@ -24,7 +24,6 @@ class ButtonDevice extends SprutHubDevice {
                 if (!this.service) return;
                 const name = this.service.name;
                 await this.homey.flow.getDeviceTriggerCard('button_click').trigger(this, {}, {});
-                console.log(c);
                 await this.homey.flow.getDeviceTriggerCard('button_clicks').trigger(this, {}, c);
 
             }

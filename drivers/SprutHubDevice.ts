@@ -48,7 +48,6 @@ export class SprutHubDevice extends Homey.Device {
     }
 
     onStatus = async (accessories: any) => {
-        console.log(accessories);
         for (let a of accessories) {
             if (a.id !== this.service.aId) return;
             if (a.online === true) {
@@ -63,20 +62,15 @@ export class SprutHubDevice extends Homey.Device {
         for (let c of characteristics) {
             const link = this.links.find(l => l.characteristic.sId === c.sId && l.characteristic.cId === c.cId && l.characteristic.aId === c.aId);
             if (!link) continue;
-            console.log(link.characteristic.sId, c.sId);
-            console.log(link.characteristic.cId, c.cId);
-            console.log(link.characteristic.aId, c.aId);
             const { capability, characteristic } = link;
             if (!c.control) continue;
             if (!c.control.value) continue;
-            console.log(c.control);
             let capabilityOptions;
             try {
                 capabilityOptions = this.getCapabilityOptions(capability);
             } catch {
                 capabilityOptions = {};
             }
-            console.log(c.control.value);
 
             await this.app.converter.convertToHomey(characteristic, c.control.value, capabilityOptions)
                 .then(async value => {

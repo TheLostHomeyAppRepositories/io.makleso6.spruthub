@@ -31,9 +31,6 @@ class ButtonDriver extends SprutHubDriver {
         })
         .registerRunListener(async (args, state) => {
             if (state.aId === args.click_type.aId && state.sId === args.click_type.sId && state.cId === args.click_type.cId) {
-                console.log('state');
-                console.log(state);
-                console.log(args.click_type);
                 return Object.values(state.control.value)[0] === Object.values(args.click_type.value.value)[0];
             }
             return false;
