@@ -1,15 +1,5 @@
 [
   {
-    "type": "group",
-    "label": {
-      "en": "Device Settings",
-      "ru": "Настройки устройства"
-    },
-    "children": [
-      {
-        "id": "room",
-        "$extends": "room"
-      }
-    ]
+    "$extends": "globalSettings"
   }
 ]

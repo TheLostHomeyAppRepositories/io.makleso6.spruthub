@@ -1,1 +1,27 @@
-{}
+{
+    "triggers": [
+        {
+            "id": "capability_changed",
+            "highlight": true,
+            "title": "Значение свойства изменено",
+            "titleFormatted": "Значение измененооооо",
+            "tokens": [
+                {
+                    "type": "number",
+                    "name": "dim",
+                    "title": "Яркость"
+                },
+                {
+                    "type": "number",
+                    "name": "temperature",
+                    "title": "Температура"
+                },
+                {
+                    "type": "boolean",
+                    "name": "onoff",
+                    "title": "Включена"
+                }
+            ]
+        }
+    ]
+}

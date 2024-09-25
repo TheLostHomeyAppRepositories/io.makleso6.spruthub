@@ -1,0 +1,18 @@
+{
+  "type": "group",
+  "label": {
+    "en": "Device Settings",
+    "ru": "Настройки устройства"
+  },
+  "children": [
+    {
+      "id": "room",
+      "type": "label",
+      "value": "",
+      "label": {
+        "en": "Room",
+        "ru": "Комната"
+      }
+    }
+  ]
+}

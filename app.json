@@ -92,6 +92,36 @@
             "title": "Тип клика"
           }
         ]
+      },
+      {
+        "id": "capability_changed",
+        "highlight": true,
+        "title": "Значение свойства изменено",
+        "titleFormatted": "Значение измененооооо",
+        "tokens": [
+          {
+            "type": "number",
+            "name": "dim",
+            "title": "Яркость"
+          },
+          {
+            "type": "number",
+            "name": "temperature",
+            "title": "Температура"
+          },
+          {
+            "type": "boolean",
+            "name": "onoff",
+            "title": "Включена"
+          }
+        ],
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=light"
+          }
+        ]
       }
     ]
   },
@@ -407,6 +437,7 @@
       "id": "light",
       "settings": [
         {
+          "id": "globalSettings",
           "type": "group",
           "label": {
             "en": "Device Settings",

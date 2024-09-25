@@ -2,7 +2,6 @@ import Homey from "homey";
 import { SprutHub } from "../app";
 import { AccessoryMessage, CharacteristicMessage, getCharacteristicControl, ServiceMessage } from "../lib/objects";
 import { SprutHubDriver } from "./SprutHubDriver";
-import { v4 as uuid } from 'uuid';
 
 type CapabilityLink = {
     capability: string,
