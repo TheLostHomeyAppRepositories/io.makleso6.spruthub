@@ -29,12 +29,17 @@ export default class Client {
         this.accessory = new Accessory(this);
         this.service = new Service(this);
         this.characteristic = new Characteristic(this);
-     }
+    }
     
+    isConnected(): boolean {
+        return this.client.isConnected()
+     }
+
     async connect(credentials: HubInfo) {
         this.emitter.setMaxListeners(0);
         this.client = new WebSocketClient(credentials);
         await this.client.connect();
+        console.log('*** connect');
         this.client.subscribe( (response) => {
             if (response.event !== undefined){
                 if (response.event.characteristic !== undefined) {
@@ -108,6 +113,10 @@ class WebSocketClient {
         });
 
         this.currentId = 1;
+    }
+
+    isConnected(): boolean {
+       return this.ws.readyState === WebSocket.OPEN
     }
 
     async connect(): Promise<void> {

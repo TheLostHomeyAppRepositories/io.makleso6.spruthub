@@ -26,10 +26,14 @@ export class SprutHub extends Homey.App {
       }
 
       await this.client.connect(hubInfo);
+      await this.client.loadDevices();
     }
   }
 
   async testConnection() {
+    if (this.client.isConnected()) {
+      return true;
+    }
     let address = this.homey.settings.get('address');
     let token = this.homey.settings.get('token');
 
@@ -41,9 +45,9 @@ export class SprutHub extends Homey.App {
       }
       await this.client.connect(hubInfo);
       await this.client.loadDevices();
-      return true
+      return true;
     } else {
-      return false
+      return false;
     }
 
   }

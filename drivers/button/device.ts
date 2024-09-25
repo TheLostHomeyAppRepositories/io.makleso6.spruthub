@@ -1,6 +1,5 @@
 import { getCharacteristicControl } from "../../lib/objects";
 import { SprutHubDevice } from "../SprutHubDevice";
-import { SprutHubDriver } from "../SprutHubDriver";
 
 class ButtonDevice extends SprutHubDevice {
     
@@ -15,14 +14,16 @@ class ButtonDevice extends SprutHubDevice {
     }
 
     onButtonClickEvent = async (characteristics: any) => {
+
         for (let c of characteristics) {
             if (c.aId !== this.service.aId) return;
             const characteristic = this.service.characteristics?.find(v => v.sId === c.sId && v.cId === c.cId && v.aId === c.aId);
             if (!characteristic) return;
-            
+
             if (getCharacteristicControl(characteristic).type == 'ProgrammableSwitchEvent') {
                 if (!this.service) return;
                 const name = this.service.name;
+                // console.log(name)
                 await this.homey.flow.getDeviceTriggerCard('button_click').trigger(this, {}, {});
                 await this.homey.flow.getDeviceTriggerCard('button_clicks').trigger(this, {}, c);
 

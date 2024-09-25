@@ -13,7 +13,7 @@ class ButtonDriver extends SprutHubDriver {
             if (!device.service.characteristics) return [];
             return device.service.characteristics.flatMap(characteristic => {
                 if (getCharacteristicControl(characteristic).type === 'ProgrammableSwitchEvent') {
-                    const val =  getCharacteristicControl(characteristic).validValues
+                    const val = getCharacteristicControl(characteristic).validValues
                     ?.filter(value => value.checked === true)
                     ?.map(filteredValue => ({ 
                         name: filteredValue.name, 

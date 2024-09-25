@@ -17,22 +17,19 @@ export class SprutHubDevice extends Homey.Device {
     async onInit() {
         super.onInit()
 
-        // const s = this.getSettings();
-        // this.setSettings({room: "test"})
-        // console.log(s);
         this.log('SprutHubDevice has been initialized');
         this.app = this.homey.app as SprutHub;
         const data = this.getData()
         this.service = await (this.driver as SprutHubDriver).getService(data.aid, data.sid);
         await this.makeCapabilities(this.service);
 
-        const batteryService = await (this.driver as SprutHubDriver).getServiceWithType(data.aid, 'BatteryService')
+        const batteryService = await (this.driver as SprutHubDriver).getServiceWithType(data.aid, 'BatteryService');
         if (batteryService) {
             await this.makeCapabilities(batteryService);
         }
         this.subscribeCharacteristicsUpdate()
 
-        const device = (await (this.driver as SprutHubDriver).getAccessory(data.aid))
+        const device = await (this.driver as SprutHubDriver).getAccessory(data.aid);
         if (device.online) {
             console.log
             await this.setAvailable()

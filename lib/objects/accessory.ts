@@ -58,18 +58,6 @@ export class Accessory {
             let list: HubResult = await this.client.call(params);
             this._accessories = list.accessory.list.accessories;
 
-            // for (const acc of list.accessory.list.accessories) {
-            //     if (!acc.services) continue;
-            //     for (const service of acc.services) {
-            //         if (!service.characteristics) continue;
-            //         for (const ch of service.characteristics) {
-            //             const newch = ch as any
-                        
-            //             ch.control 
-            //         }
-            //     }
-            // }
-
             return this._accessories;
         }
         return this._accessories;
