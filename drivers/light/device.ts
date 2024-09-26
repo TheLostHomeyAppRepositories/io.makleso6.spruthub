@@ -55,9 +55,7 @@ class LightDevice extends SprutHubDevice {
                 temperature = this.getCapabilityValue('light_temperature') ?? 0
             }
 
-            // this.app.converter.convertToHomey
             const tokens = { dim: dim, temperature: temperature, onoff: onoff };
-            console.log(tokens);
             await this.homey.flow.getDeviceTriggerCard('capability_changed').trigger(this, tokens).catch(error => { this.error(error) });
 
 
