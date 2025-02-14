@@ -40,6 +40,7 @@ class ThermostatDriver extends SprutHubDriver {
     }
 
     async onPairListDevices() {
+        return this.getDevicesWithTypes(['Thermostat', 'HeaterCooler']);
         return this.getDevicesWithType('Thermostat');
     }
 }

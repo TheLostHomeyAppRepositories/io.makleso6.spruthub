@@ -22,6 +22,8 @@ export class SprutHubDevice extends Homey.Device {
         this.service = await (this.driver as SprutHubDriver).getService(data.aid, data.sid);
         await this.makeCapabilities(this.service);
 
+        // this.log('SprutHubDevice done makeCapabilities');
+
         const batteryService = await (this.driver as SprutHubDriver).getServiceWithType(data.aid, 'BatteryService');
         if (batteryService) {
             await this.makeCapabilities(batteryService);
@@ -43,19 +45,42 @@ export class SprutHubDevice extends Homey.Device {
         }
     }
 
-    async onDeleted() {
-        this.app.client.unsubscribeCharacteristicsEvent(this.onCharacteristic);
-        this.app.client.unsubscribeCharacteristicsEvent(this.onStatus);
-    }
-
     subscribeCharacteristicsUpdate() {
         this.app.client.subscribeCharacteristicsEvent(this.onCharacteristic);
         this.app.client.subscribeStatusEvent(this.onStatus);
+        this.app.client.subscribeSocketReconected(this.onConnected);
+        this.app.client.subscribeSocketClose(this.onClose);
+    }
+
+    async onDeleted() {
+        this.app.client.unsubscribeCharacteristicsEvent(this.onCharacteristic);
+        this.app.client.unsubscribeCharacteristicsEvent(this.onStatus);
+        this.app.client.unsubscribeSocketReconected(this.onConnected);
+        this.app.client.unsubscribeSocketClose(this.onClose);
+
+    }
+
+    onClose = async () => {
+        await this.setUnavailable('websocet close');
+    }
+
+    onConnected = async (accessories: any) => {
+        console.log("*** DEVICE onConnected");
+        for (let a of accessories) {
+            if (a.id !== this.service.aId) continue;
+            if (a.online === true) {
+                await this.setAvailable()
+            } else {
+                await this.setUnavailable('device offline');
+            }
+            console.log("*** DEVICE onConnected", a.online);
+
+        }
     }
 
     onStatus = async (accessories: any) => {
         for (let a of accessories) {
-            if (a.id !== this.service.aId) return;
+            if (a.id !== this.service.aId) continue;
             if (a.online === true) {
                 await this.setAvailable()
             } else {

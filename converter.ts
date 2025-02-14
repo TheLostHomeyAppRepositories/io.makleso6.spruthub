@@ -35,7 +35,7 @@ export const HOMEY_CAPABILITIES: {
     light_mode: [],
     vacuumcleaner_state: [],
     thermostat_mode: ["TargetHeatingCoolingState"],
-    target_temperature: ["TargetTemperature"],
+    target_temperature: ["TargetTemperature", "HeatingThresholdTemperature"],
     measure_temperature: ["CurrentTemperature"],
     measure_co: ["CarbonMonoxideLevel"],
     measure_co2: ["CarbonDioxideLevel"],
@@ -123,7 +123,7 @@ export const CUSTOM_CAPABILITIES: {
     measure_voc: ["VOCDensity"],
     measure_water_level: ["WaterLevel"],
     // alarm_active: ["StatusActive"],
-    alarm_fault: ["StatusFault"],
+    // alarm_fault: ["StatusFault"],
     alarm_jammed: ["StatusJammed"],
     alarm_noise: ["C_NoiseDetected"]
 };
@@ -197,7 +197,8 @@ const VALID_VALUES_TYPES: string[] = [
 const MIN_MAX_CONVERTED: string[] = [
     "TargetTemperature",
     "C_FanSpeed",
-    "RotationSpeed"
+    "RotationSpeed",
+    "HeatingThresholdTemperature"
 ]
 
 export type Capability = {
@@ -384,6 +385,7 @@ export class Converter {
                 ...minMax
             }
         }
+        // console.log(options);
         return options;
     }
 
