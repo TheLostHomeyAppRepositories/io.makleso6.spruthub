@@ -1,9 +1,0 @@
-{
-  "id": "room",
-  "type": "label",
-  "value": "",
-  "label": {
-    "en": "Room",
-    "ru": "Комната"
-  }
-}

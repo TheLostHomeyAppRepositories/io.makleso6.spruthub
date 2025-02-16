@@ -3,13 +3,7 @@ import { SprutHubDriver } from "../SprutHubDriver";
 class SensorDriver extends SprutHubDriver {
     async onInit() {
         await super.onInit();
-        this.log('ButtonDriver has been initialized');
-
-        // let trigger = this.homey.flow.getDeviceTriggerCard('button_click');
-
-        // trigger.registerRunListener((args, state) => {
-        //     return true;
-        // });
+        this.log('SensorDriver has been initialized');
     }
 
     async onPairListDevices() {

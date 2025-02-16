@@ -127,6 +127,7 @@
   },
   "drivers": [
     {
+      "icon": "/drivers/airpurifier/assets/icon.svg",
       "pair": [
         {
           "id": "loading",
@@ -177,6 +178,7 @@
       "id": "airpurifier",
       "settings": [
         {
+          "id": "globalSettings",
           "type": "group",
           "label": {
             "en": "Device Settings",
@@ -197,6 +199,7 @@
       ]
     },
     {
+      "icon": "/drivers/button/assets/icon.svg",
       "pair": [
         {
           "id": "loading",
@@ -247,6 +250,7 @@
       "id": "button",
       "settings": [
         {
+          "id": "globalSettings",
           "type": "group",
           "label": {
             "en": "Device Settings",
@@ -267,6 +271,7 @@
       ]
     },
     {
+      "icon": "/drivers/curtain/assets/icon.svg",
       "pair": [
         {
           "id": "loading",
@@ -317,6 +322,7 @@
       "id": "curtain",
       "settings": [
         {
+          "id": "globalSettings",
           "type": "group",
           "label": {
             "en": "Device Settings",
@@ -337,6 +343,7 @@
       ]
     },
     {
+      "icon": "/drivers/homealarm/assets/icon.svg",
       "pair": [
         {
           "id": "loading",
@@ -387,6 +394,7 @@
       "id": "homealarm",
       "settings": [
         {
+          "id": "globalSettings",
           "type": "group",
           "label": {
             "en": "Device Settings",
@@ -407,6 +415,7 @@
       ]
     },
     {
+      "icon": "/drivers/light/assets/icon.svg",
       "pair": [
         {
           "id": "loading",
@@ -453,6 +462,11 @@
         "large": "{{ driverAssetsPath }}/images/large.png",
         "xlarge": "{{ driverAssetsPath }}/images/xlarge.png"
       },
+      "icons": [
+        {
+          "system": "lightbulb"
+        }
+      ],
       "capabilities": [],
       "id": "light",
       "settings": [
@@ -478,6 +492,7 @@
       ]
     },
     {
+      "icon": "/drivers/sensor/assets/icon.svg",
       "pair": [
         {
           "id": "loading",
@@ -528,6 +543,7 @@
       "id": "sensor",
       "settings": [
         {
+          "id": "globalSettings",
           "type": "group",
           "label": {
             "en": "Device Settings",
@@ -548,6 +564,7 @@
       ]
     },
     {
+      "icon": "/drivers/socket/assets/icon.svg",
       "pair": [
         {
           "id": "loading",
@@ -598,6 +615,7 @@
       "id": "socket",
       "settings": [
         {
+          "id": "globalSettings",
           "type": "group",
           "label": {
             "en": "Device Settings",
@@ -618,6 +636,7 @@
       ]
     },
     {
+      "icon": "/drivers/thermostat/assets/icon.svg",
       "pair": [
         {
           "id": "loading",
@@ -668,6 +687,7 @@
       "id": "thermostat",
       "settings": [
         {
+          "id": "globalSettings",
           "type": "group",
           "label": {
             "en": "Device Settings",
