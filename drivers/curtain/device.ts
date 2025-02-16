@@ -3,7 +3,9 @@ import { SprutHubDevice } from "../SprutHubDevice";
 class CurtainDevice extends SprutHubDevice {
     async onInit() {
         await super.onInit();
-        for (const characteristic of this.service.characteristics!) {
+        const characteristics = this.links.map( link => { return link.characteristic })
+
+        for (const characteristic of characteristics) {
             if (characteristic.control?.type === "C_TargetPositionState") {
                 const characteristicOptions = this.app.converter.getCharacteristicOptions(characteristic);
                 if (characteristicOptions.values) {

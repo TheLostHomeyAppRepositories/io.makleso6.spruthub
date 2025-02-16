@@ -1,6 +1,7 @@
 import { SprutHubDriver } from "../SprutHubDriver";
 import { SprutHubDevice} from "../SprutHubDevice";
 import { getCharacteristicControl } from "../../lib/objects";
+import { link } from "fs";
 
 class ButtonDriver extends SprutHubDriver {
     async onInit() {
@@ -10,8 +11,9 @@ class ButtonDriver extends SprutHubDriver {
         this.homey.flow.getDeviceTriggerCard('button_clicks')
         .registerArgumentAutocompleteListener('click_type', (query, args) => {
             const device = args.device as SprutHubDevice;
-            if (!device.service.characteristics) return [];
-            return device.service.characteristics.flatMap(characteristic => {
+            const characteristics = device.links.map( link => { return link.characteristic })
+            
+            return characteristics.flatMap(characteristic => {
                 if (getCharacteristicControl(characteristic).type === 'ProgrammableSwitchEvent') {
                     const val = getCharacteristicControl(characteristic).validValues
                     ?.filter(value => value.checked === true)

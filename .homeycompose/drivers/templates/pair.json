@@ -2,21 +2,6 @@
   "icon": "{{driverAssetsPath}}/icon.svg",
   "pair": [
     {
-      "id": "loading",
-      "template": "loading"
-    },
-    {
-      "id": "list_devices",
-      "template": "list_devices",
-      "navigation": {
-        "next": "add_devices"
-      }
-    },
-    {
-      "id": "add_devices",
-      "template": "add_devices"
-    },
-    {
       "id": "login_credentials",
       "template": "login_credentials",
       "options": {
@@ -34,6 +19,17 @@
           "ru": "Токен"
         }
       }
+    },
+    {
+      "id": "list_devices",
+      "template": "list_devices",
+      "navigation": {
+        "next": "add_devices"
+      }
+    },
+    {
+      "id": "add_devices",
+      "template": "add_devices"
     }
   ]
 }

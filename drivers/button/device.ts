@@ -14,16 +14,14 @@ class ButtonDevice extends SprutHubDevice {
     }
 
     onButtonClickEvent = async (characteristics: any) => {
-
+        const data = this.getData()
         for (let c of characteristics) {
-            if (c.aId !== this.service.aId) return;
-            const characteristic = this.service.characteristics?.find(v => v.sId === c.sId && v.cId === c.cId && v.aId === c.aId);
+            if (c.aId !== data.aid) continue;
+            const characteristic = this.linkedServices?.find(serivece => serivece.sId === c.sId && serivece.aId === c.aId)?.characteristics?.find(char => char.cId === c.cId);
             if (!characteristic) return;
+            console.log('onButtonClickEvent 2');
 
             if (getCharacteristicControl(characteristic).type == 'ProgrammableSwitchEvent') {
-                if (!this.service) return;
-                const name = this.service.name;
-                // console.log(name)
                 await this.homey.flow.getDeviceTriggerCard('button_click').trigger(this, {}, {});
                 await this.homey.flow.getDeviceTriggerCard('button_clicks').trigger(this, {}, c);
 

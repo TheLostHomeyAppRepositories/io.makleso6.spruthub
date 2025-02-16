@@ -14,10 +14,12 @@ class LightDevice extends SprutHubDevice {
     }
 
     capabilityChanged = async (characteristics: any) => {
+        const data = this.getData()
 
         for (let c of characteristics) {
-            if (c.aId !== this.service.aId) return;
-            const characteristic = this.service.characteristics?.find(v => v.sId === c.sId && v.cId === c.cId && v.aId === c.aId);
+            if (c.aId !== data.aid) return;
+            const characteristics = this.links.map(link => { return link.characteristic })
+            const characteristic = characteristics.find(v => v.sId === c.sId && v.cId === c.cId && v.aId === c.aId);
             const link = this.links.find(l => l.characteristic.sId === c.sId && l.characteristic.cId === c.cId && l.characteristic.aId === c.aId);
             if (!link) return;
             if (!characteristic) return;

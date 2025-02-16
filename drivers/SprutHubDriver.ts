@@ -11,13 +11,11 @@ export class SprutHubDriver extends Homey.Driver {
     }
 
     async onPair(session: Homey.Driver.PairSession) {
-        session.setHandler('showView', async (view) => {            
-            if (view === 'loading') {
+        session.setHandler('showView', async (view) => {
+            if (view === 'login_credentials') {
                 const hasCredentionals = await this.app.testConnection();
                 if (hasCredentionals === true) {
                     await session.showView("list_devices");
-                } else {
-                    await session.showView("login_credentials");
                 }
             }
         });

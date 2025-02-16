@@ -10,8 +10,8 @@ type CapabilityLink = {
 
 export class SprutHubDevice extends Homey.Device {
     app!: SprutHub;
-    service!: ServiceMessage;
     links: CapabilityLink[] = [];
+    linkedServices: ServiceMessage[] = [];
 
     async onInit() {
         super.onInit()
@@ -19,13 +19,17 @@ export class SprutHubDevice extends Homey.Device {
         this.log('SprutHubDevice has been initialized');
         this.app = this.homey.app as SprutHub;
         const data = this.getData()
-        this.service = await (this.driver as SprutHubDriver).getService(data.aid, data.sid);
-        await this.makeCapabilities(this.service);
+        const baseService = await (this.driver as SprutHubDriver).getService(data.aid, data.sid);
+        if (baseService) {
+            this.linkedServices.push(baseService);
+            await this.makeCapabilities(baseService);
+        }
 
         // this.log('SprutHubDevice done makeCapabilities');
 
         const batteryService = await (this.driver as SprutHubDriver).getServiceWithType(data.aid, 'BatteryService');
         if (batteryService) {
+            this.linkedServices.push(baseService);
             await this.makeCapabilities(batteryService);
         }
         this.subscribeCharacteristicsUpdate()
@@ -64,8 +68,9 @@ export class SprutHubDevice extends Homey.Device {
     }
 
     onConnected = async (accessories: any) => {
+        const data = this.getData()
         for (let a of accessories) {
-            if (a.id !== this.service.aId) continue;
+            if (a.id !== data.aid) continue;
             if (a.online === true) {
                 await this.setAvailable()
             } else {
@@ -75,8 +80,9 @@ export class SprutHubDevice extends Homey.Device {
     }
 
     onStatus = async (accessories: any) => {
+        const data = this.getData()
         for (let a of accessories) {
-            if (a.id !== this.service.aId) continue;
+            if (a.id !== data.aid) continue;
             if (a.online === true) {
                 await this.setAvailable()
             } else {
@@ -122,7 +128,10 @@ export class SprutHubDevice extends Homey.Device {
                 await this.addCapability(capability);
                 capabilityOptions = {};
             }
+
+            // console.log(this.links);
             this.links.push({ capability: capability, characteristic: characteristic })
+            // console.log(this.links);
 
             const options = {
                 ...capabilityOptions,

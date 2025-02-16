@@ -130,21 +130,6 @@
       "icon": "/drivers/airpurifier/assets/icon.svg",
       "pair": [
         {
-          "id": "loading",
-          "template": "loading"
-        },
-        {
-          "id": "list_devices",
-          "template": "list_devices",
-          "navigation": {
-            "next": "add_devices"
-          }
-        },
-        {
-          "id": "add_devices",
-          "template": "add_devices"
-        },
-        {
           "id": "login_credentials",
           "template": "login_credentials",
           "options": {
@@ -162,6 +147,17 @@
               "ru": "Токен"
             }
           }
+        },
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
         }
       ],
       "class": "airpurifier",
@@ -202,21 +198,6 @@
       "icon": "/drivers/button/assets/icon.svg",
       "pair": [
         {
-          "id": "loading",
-          "template": "loading"
-        },
-        {
-          "id": "list_devices",
-          "template": "list_devices",
-          "navigation": {
-            "next": "add_devices"
-          }
-        },
-        {
-          "id": "add_devices",
-          "template": "add_devices"
-        },
-        {
           "id": "login_credentials",
           "template": "login_credentials",
           "options": {
@@ -234,6 +215,17 @@
               "ru": "Токен"
             }
           }
+        },
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
         }
       ],
       "class": "other",
@@ -274,21 +266,6 @@
       "icon": "/drivers/curtain/assets/icon.svg",
       "pair": [
         {
-          "id": "loading",
-          "template": "loading"
-        },
-        {
-          "id": "list_devices",
-          "template": "list_devices",
-          "navigation": {
-            "next": "add_devices"
-          }
-        },
-        {
-          "id": "add_devices",
-          "template": "add_devices"
-        },
-        {
           "id": "login_credentials",
           "template": "login_credentials",
           "options": {
@@ -306,6 +283,17 @@
               "ru": "Токен"
             }
           }
+        },
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
         }
       ],
       "class": "curtain",
@@ -346,21 +334,6 @@
       "icon": "/drivers/homealarm/assets/icon.svg",
       "pair": [
         {
-          "id": "loading",
-          "template": "loading"
-        },
-        {
-          "id": "list_devices",
-          "template": "list_devices",
-          "navigation": {
-            "next": "add_devices"
-          }
-        },
-        {
-          "id": "add_devices",
-          "template": "add_devices"
-        },
-        {
           "id": "login_credentials",
           "template": "login_credentials",
           "options": {
@@ -378,6 +351,17 @@
               "ru": "Токен"
             }
           }
+        },
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
         }
       ],
       "class": "homealarm",
@@ -418,21 +402,6 @@
       "icon": "/drivers/light/assets/icon.svg",
       "pair": [
         {
-          "id": "loading",
-          "template": "loading"
-        },
-        {
-          "id": "list_devices",
-          "template": "list_devices",
-          "navigation": {
-            "next": "add_devices"
-          }
-        },
-        {
-          "id": "add_devices",
-          "template": "add_devices"
-        },
-        {
           "id": "login_credentials",
           "template": "login_credentials",
           "options": {
@@ -450,6 +419,17 @@
               "ru": "Токен"
             }
           }
+        },
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
         }
       ],
       "class": "light",
@@ -495,21 +475,6 @@
       "icon": "/drivers/outlet/assets/icon.svg",
       "pair": [
         {
-          "id": "loading",
-          "template": "loading"
-        },
-        {
-          "id": "list_devices",
-          "template": "list_devices",
-          "navigation": {
-            "next": "add_devices"
-          }
-        },
-        {
-          "id": "add_devices",
-          "template": "add_devices"
-        },
-        {
           "id": "login_credentials",
           "template": "login_credentials",
           "options": {
@@ -527,6 +492,17 @@
               "ru": "Токен"
             }
           }
+        },
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
         }
       ],
       "class": "socket",
@@ -567,21 +543,6 @@
       "icon": "/drivers/sensor/assets/icon.svg",
       "pair": [
         {
-          "id": "loading",
-          "template": "loading"
-        },
-        {
-          "id": "list_devices",
-          "template": "list_devices",
-          "navigation": {
-            "next": "add_devices"
-          }
-        },
-        {
-          "id": "add_devices",
-          "template": "add_devices"
-        },
-        {
           "id": "login_credentials",
           "template": "login_credentials",
           "options": {
@@ -599,6 +560,17 @@
               "ru": "Токен"
             }
           }
+        },
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
         }
       ],
       "class": "sensor",
@@ -639,21 +611,6 @@
       "icon": "/drivers/switch/assets/icon.svg",
       "pair": [
         {
-          "id": "loading",
-          "template": "loading"
-        },
-        {
-          "id": "list_devices",
-          "template": "list_devices",
-          "navigation": {
-            "next": "add_devices"
-          }
-        },
-        {
-          "id": "add_devices",
-          "template": "add_devices"
-        },
-        {
           "id": "login_credentials",
           "template": "login_credentials",
           "options": {
@@ -671,6 +628,17 @@
               "ru": "Токен"
             }
           }
+        },
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
         }
       ],
       "class": "socket",
@@ -711,21 +679,6 @@
       "icon": "/drivers/thermostat/assets/icon.svg",
       "pair": [
         {
-          "id": "loading",
-          "template": "loading"
-        },
-        {
-          "id": "list_devices",
-          "template": "list_devices",
-          "navigation": {
-            "next": "add_devices"
-          }
-        },
-        {
-          "id": "add_devices",
-          "template": "add_devices"
-        },
-        {
           "id": "login_credentials",
           "template": "login_credentials",
           "options": {
@@ -743,6 +696,17 @@
               "ru": "Токен"
             }
           }
+        },
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
         }
       ],
       "class": "thermostat",
