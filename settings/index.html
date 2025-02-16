@@ -19,10 +19,6 @@
             <label class="homey-form-label" for="password">Токен</label>
             <input class="homey-form-input" id="password" type="password" value="" />
         </div>
-        <div class="homey-form-group"></div>
-            <label class="homey-form-label" for="serial">Серийный номер</label>
-            <input class="homey-form-input" id="serial" type="text" value="" />
-        </div>
     </fieldset>
 
     <button id="save" class="homey-button-primary-full">Save changes</button>
@@ -35,32 +31,24 @@
 
             var usernameElement = document.getElementById("address");
             var passwordElement = document.getElementById("password");
-            var serialElement = document.getElementById("serial");
             var saveElement = document.getElementById("save");
 
-            Homey.get("username", function (err, username) {
+            Homey.get("address", function (err, username) {
                 if (err) return Homey.alert(err);
                 usernameElement.value = username;
             });
 
-            Homey.get("password", function (err, password) {
+            Homey.get("token", function (err, password) {
                 if (err) return Homey.alert(err);
                 passwordElement.value = password;
             });
 
-            Homey.get("serial", function (err, serial) {
-                if (err) return Homey.alert(err);
-                serialElement.value = serial;
-            });
-
             saveElement.addEventListener("click", function (e) {
-                Homey.set("username", usernameElement.value, function (err) {
+                Homey.set("address", usernameElement.value, function (err) {
                     if (err) return Homey.alert(err);
                 });
-                Homey.set("password", passwordElement.value, function (err) {
-                    if (err) return Homey.alert(err);
-                });
-                Homey.set("serial", serialElement.value, function (err) {
+               
+                Homey.set("token", passwordElement.value, function (err) {
                     if (err) return Homey.alert(err);
                 });
             });

@@ -57,7 +57,6 @@ export class SprutHubDevice extends Homey.Device {
         this.app.client.unsubscribeCharacteristicsEvent(this.onStatus);
         this.app.client.unsubscribeSocketReconected(this.onConnected);
         this.app.client.unsubscribeSocketClose(this.onClose);
-
     }
 
     onClose = async () => {
@@ -65,7 +64,6 @@ export class SprutHubDevice extends Homey.Device {
     }
 
     onConnected = async (accessories: any) => {
-        console.log("*** DEVICE onConnected");
         for (let a of accessories) {
             if (a.id !== this.service.aId) continue;
             if (a.online === true) {
@@ -73,8 +71,6 @@ export class SprutHubDevice extends Homey.Device {
             } else {
                 await this.setUnavailable('device offline');
             }
-            console.log("*** DEVICE onConnected", a.online);
-
         }
     }
 

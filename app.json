@@ -129,6 +129,21 @@
     {
       "pair": [
         {
+          "id": "loading",
+          "template": "loading"
+        },
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        },
+        {
           "id": "login_credentials",
           "template": "login_credentials",
           "options": {
@@ -146,17 +161,6 @@
               "ru": "Токен"
             }
           }
-        },
-        {
-          "id": "list_devices",
-          "template": "list_devices",
-          "navigation": {
-            "next": "add_devices"
-          }
-        },
-        {
-          "id": "add_devices",
-          "template": "add_devices"
         }
       ],
       "class": "airpurifier",
@@ -195,6 +199,21 @@
     {
       "pair": [
         {
+          "id": "loading",
+          "template": "loading"
+        },
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        },
+        {
           "id": "login_credentials",
           "template": "login_credentials",
           "options": {
@@ -212,17 +231,6 @@
               "ru": "Токен"
             }
           }
-        },
-        {
-          "id": "list_devices",
-          "template": "list_devices",
-          "navigation": {
-            "next": "add_devices"
-          }
-        },
-        {
-          "id": "add_devices",
-          "template": "add_devices"
         }
       ],
       "class": "other",
@@ -261,6 +269,21 @@
     {
       "pair": [
         {
+          "id": "loading",
+          "template": "loading"
+        },
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        },
+        {
           "id": "login_credentials",
           "template": "login_credentials",
           "options": {
@@ -278,17 +301,6 @@
               "ru": "Токен"
             }
           }
-        },
-        {
-          "id": "list_devices",
-          "template": "list_devices",
-          "navigation": {
-            "next": "add_devices"
-          }
-        },
-        {
-          "id": "add_devices",
-          "template": "add_devices"
         }
       ],
       "class": "curtain",
@@ -327,6 +339,21 @@
     {
       "pair": [
         {
+          "id": "loading",
+          "template": "loading"
+        },
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        },
+        {
           "id": "login_credentials",
           "template": "login_credentials",
           "options": {
@@ -344,17 +371,6 @@
               "ru": "Токен"
             }
           }
-        },
-        {
-          "id": "list_devices",
-          "template": "list_devices",
-          "navigation": {
-            "next": "add_devices"
-          }
-        },
-        {
-          "id": "add_devices",
-          "template": "add_devices"
         }
       ],
       "class": "homealarm",
@@ -393,6 +409,21 @@
     {
       "pair": [
         {
+          "id": "loading",
+          "template": "loading"
+        },
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        },
+        {
           "id": "login_credentials",
           "template": "login_credentials",
           "options": {
@@ -410,17 +441,6 @@
               "ru": "Токен"
             }
           }
-        },
-        {
-          "id": "list_devices",
-          "template": "list_devices",
-          "navigation": {
-            "next": "add_devices"
-          }
-        },
-        {
-          "id": "add_devices",
-          "template": "add_devices"
         }
       ],
       "class": "light",
@@ -460,6 +480,21 @@
     {
       "pair": [
         {
+          "id": "loading",
+          "template": "loading"
+        },
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        },
+        {
           "id": "login_credentials",
           "template": "login_credentials",
           "options": {
@@ -477,17 +512,6 @@
               "ru": "Токен"
             }
           }
-        },
-        {
-          "id": "list_devices",
-          "template": "list_devices",
-          "navigation": {
-            "next": "add_devices"
-          }
-        },
-        {
-          "id": "add_devices",
-          "template": "add_devices"
         }
       ],
       "class": "sensor",
@@ -526,6 +550,21 @@
     {
       "pair": [
         {
+          "id": "loading",
+          "template": "loading"
+        },
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        },
+        {
           "id": "login_credentials",
           "template": "login_credentials",
           "options": {
@@ -543,17 +582,6 @@
               "ru": "Токен"
             }
           }
-        },
-        {
-          "id": "list_devices",
-          "template": "list_devices",
-          "navigation": {
-            "next": "add_devices"
-          }
-        },
-        {
-          "id": "add_devices",
-          "template": "add_devices"
         }
       ],
       "class": "socket",
@@ -592,6 +620,21 @@
     {
       "pair": [
         {
+          "id": "loading",
+          "template": "loading"
+        },
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        },
+        {
           "id": "login_credentials",
           "template": "login_credentials",
           "options": {
@@ -609,17 +652,6 @@
               "ru": "Токен"
             }
           }
-        },
-        {
-          "id": "list_devices",
-          "template": "list_devices",
-          "navigation": {
-            "next": "add_devices"
-          }
-        },
-        {
-          "id": "add_devices",
-          "template": "add_devices"
         }
       ],
       "class": "thermostat",

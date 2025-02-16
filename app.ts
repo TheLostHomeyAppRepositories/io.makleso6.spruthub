@@ -15,8 +15,12 @@ export class SprutHub extends Homey.App {
     this.converter = new Converter(this.homey.app.manifest.capabilities);
     this.client = new Client()
 
+
     let address = this.homey.settings.get('address');
     let token = this.homey.settings.get('token');
+
+    console.log(address);
+    console.log(token);
 
     if (address && token) {
       const hubInfo = {
