@@ -1,13 +1,14 @@
 import { SprutHubDriver } from "../SprutHubDriver";
 
-class SocketDriver extends SprutHubDriver {
+class SwitchDriver extends SprutHubDriver {
     async onInit() {
         await super.onInit();
         this.log('SocketDriver has been initialized');
     }
 
     async onPairListDevices() {
-        const devices = await this.getDevicesWithTypes(['Switch', 'Outlet'])
+
+        const devices = await this.getDevicesWithType('Switch');
         return devices.filter((device: any) => {
             if (device.data) {
                 return device.data.aid !== 3 // remove sprut hub zigbee nodes
@@ -17,4 +18,4 @@ class SocketDriver extends SprutHubDriver {
     }
 }
 
-module.exports = SocketDriver;
+module.exports = SwitchDriver;

@@ -8,7 +8,7 @@ class ThermostatmDriver extends SprutHubDriver {
     }
 
     async onPairListDevices() {
-        return this.getDevicesWithType('AirPurifier');
+        return await this.getDevicesWithType('AirPurifier');
     }
 }
 

@@ -16,7 +16,7 @@ class LightDriver extends SprutHubDriver {
     }
 
     async onPairListDevices() {
-        return this.getDevicesWithType('Lightbulb')
+        return await this.getDevicesWithType('Lightbulb')
     }
 }
 

@@ -8,7 +8,7 @@ class CurtainDriver extends SprutHubDriver {
     }
 
     async onPairListDevices() {
-        return this.getDevicesWithType('WindowCovering')
+        return await this.getDevicesWithType('WindowCovering')
     }
 }
 

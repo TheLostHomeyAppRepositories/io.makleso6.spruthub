@@ -7,7 +7,7 @@ class HomeAlarmDriver extends SprutHubDriver {
     }
 
     async onPairListDevices() {
-        return this.getDevicesWithType('SecuritySystem');
+        return await this.getDevicesWithType('SecuritySystem');
     }
 }
 

@@ -38,7 +38,7 @@ class ButtonDriver extends SprutHubDriver {
     }
 
     async onPairListDevices() {
-        return this.getDevicesWithType('StatelessProgrammableSwitch')
+        return await this.getDevicesWithType('StatelessProgrammableSwitch')
     }
 }
 
