@@ -99,33 +99,33 @@ export const HOMEY_CAPABILITIES: {
     speaker_duration: [],
     speaker_position: [],
     fan_speed: ["C_FanSpeed"],
-    rotation_speed: ["RotationSpeed"]
+    rotation_speed: ["RotationSpeed"],
+    measure_tvoc: ["VOCDensity"]
 };
 
 export const CUSTOM_CAPABILITIES: {
     [capability: string]: string[]
 } = {
     // button: ["ProgrammableSwitchEvent"],
-    measure_angle: ["C_Angle"],
-    measure_aqi: ["C_AQIDensity"],
-    measure_atmospheric_pressure: ["C_CurrentAtmosphericPressure"],
-    measure_cubic_meter: ["C_CubicMeter"],
-    measure_formaldehyde: ["C_FormaldehydeDensity"],
-    measure_frequency: ["C_Frequency"],
-    measure_kvah: ["C_KiloVoltAmpereHour"],
-    measure_kvarh: ["C_KiloVoltAmpereReactiveHour"],
-    measure_motion_level: ["C_CurrentMotionLevel"],
-    measure_power_factor: ["C_PowerFactor"],
-    measure_pulse_count: ["C_PulseCount"],
-    measure_so2: ["SulphurDioxideDensity"],
-    measure_va: ["C_VoltAmpere"],
-    measure_var: ["C_VoltAmpereReactive"],
-    measure_voc: ["VOCDensity"],
-    measure_water_level: ["WaterLevel"],
+    // measure_angle: ["C_Angle"],
+    // measure_aqi: ["C_AQIDensity"],
+    // measure_atmospheric_pressure: ["C_CurrentAtmosphericPressure"],
+    // measure_cubic_meter: ["C_CubicMeter"],
+    // measure_formaldehyde: ["C_FormaldehydeDensity"],
+    // measure_frequency: ["C_Frequency"],
+    // measure_kvah: ["C_KiloVoltAmpereHour"],
+    // measure_kvarh: ["C_KiloVoltAmpereReactiveHour"],
+    // measure_motion_level: ["C_CurrentMotionLevel"],
+    // measure_power_factor: ["C_PowerFactor"],
+    // measure_pulse_count: ["C_PulseCount"],
+    // measure_so2: ["SulphurDioxideDensity"],
+    // measure_va: ["C_VoltAmpere"],
+    // measure_var: ["C_VoltAmpereReactive"],
+    // measure_water_level: ["WaterLevel"],
     // alarm_active: ["StatusActive"],
     // alarm_fault: ["StatusFault"],
-    alarm_jammed: ["StatusJammed"],
-    alarm_noise: ["C_NoiseDetected"]
+    // alarm_jammed: ["StatusJammed"],
+    // alarm_noise: ["C_NoiseDetected"]
 };
 
 export const CAPABILITIES = { ...HOMEY_CAPABILITIES, ...CUSTOM_CAPABILITIES };

@@ -1,5 +1,6 @@
 import Homey from "homey";
 import { SprutHub } from "../app";
+import { ServiceMessage } from "../lib/objects";
 
 export class SprutHubDriver extends Homey.Driver {
     app!: SprutHub;
@@ -40,6 +41,13 @@ export class SprutHubDriver extends Homey.Driver {
         return found;
     }
 
+    async getServices(aid: number, force: boolean = false) {
+        const accessories = await this.getAccessories(force);
+        const accessory = accessories.find(a => a.id === aid);
+        if (!accessory) throw "Устройство не найдено";
+        return accessory.services;
+    }
+
     async getService(aid: number, sid: number, force: boolean = false) {
         const accessories = await this.getAccessories(force);
         const accessory = accessories.find(a => a.id === aid);
@@ -55,6 +63,32 @@ export class SprutHubDriver extends Homey.Driver {
 
         return accessory?.services?.find(s => s.type === type);
     }
+
+    async getServicesWithType(aid: number, type: String) {
+        const accessories = await this.getAccessories(false);
+        const accessory = accessories.find(a => a.id === aid);
+        const services: ServiceMessage[] = [];
+
+        accessory?.services?.forEach(service => {
+            if (service.type === type) {
+                services.push(service);
+            }
+        });
+        return services;
+    }
+
+    async getServicesWithTypes(aid: number, types: string[]) {
+        const services = [];
+
+        for (const type of types) {
+            const devicesWithType = await this.getServicesWithType(aid, type);
+            services.push(...devicesWithType);
+        }
+
+        return services;
+
+    }
+    
 
     async getDevicesWithType(type: String) {
         const accessories = await this.getAccessories(true);

@@ -19,17 +19,23 @@ export class SprutHubDevice extends Homey.Device {
         this.log('SprutHubDevice has been initialized');
         this.app = this.homey.app as SprutHub;
         const data = this.getData()
-        const baseService = await (this.driver as SprutHubDriver).getService(data.aid, data.sid);
-        if (baseService) {
-            this.linkedServices.push(baseService);
-            await this.makeCapabilities(baseService);
+
+        try {
+            const baseService = await (this.driver as SprutHubDriver).getService(data.aid, data.sid);
+            if (baseService) {
+                this.linkedServices.push(baseService);
+                await this.makeCapabilities(baseService);
+            }
+        } catch(error) {
+            this.error(error);
         }
+        
 
         // this.log('SprutHubDevice done makeCapabilities');
 
         const batteryService = await (this.driver as SprutHubDriver).getServiceWithType(data.aid, 'BatteryService');
         if (batteryService) {
-            this.linkedServices.push(baseService);
+            this.linkedServices.push(batteryService);
             await this.makeCapabilities(batteryService);
         }
         this.subscribeCharacteristicsUpdate()
@@ -114,41 +120,49 @@ export class SprutHubDevice extends Homey.Device {
 
     async makeCapabilities(service: ServiceMessage) {
         for (const characteristic of service.characteristics!) {
-            let capability = this.app.converter.getCapabilityByCharacteristicType(getCharacteristicControl(characteristic).type);
-            if (!capability) continue;
-            const characteristicOptions = this.app.converter.getCharacteristicOptions(characteristic);
-            let capabilityOptions;
-            if (this.hasCapability(capability)) {
-                try {
-                    capabilityOptions = this.getCapabilityOptions(capability);
-                } catch(error) {
-                    capabilityOptions = {};
-                }
-            } else {
-                await this.addCapability(capability);
+            await this.makeCharacteristicCapabilities(characteristic);
+        }
+    }
+
+    async makeCharacteristicWithNameCapabilities(characteristic: CharacteristicMessage, capability: string) {
+        const characteristicOptions = this.app.converter.getCharacteristicOptions(characteristic);
+        let capabilityOptions;
+        if (this.hasCapability(capability)) {
+            try {
+                capabilityOptions = this.getCapabilityOptions(capability);
+            } catch(error) {
                 capabilityOptions = {};
             }
-
-            // console.log(this.links);
-            this.links.push({ capability: capability, characteristic: characteristic })
-            // console.log(this.links);
-
-            const options = {
-                ...capabilityOptions,
-                ...characteristicOptions,
-            };
-            await this.setCapabilityOptions(capability, options);
-            if (getCharacteristicControl(characteristic).write) {
-                this.registerCapabilityListener(capability, async value => {
-                    const { aId, sId, cId } = characteristic;
-                    await this.app.converter.convertFromHomey(characteristic, value, options)
-                        .then(value => this.app.client.characteristic.value(aId, sId, cId, value, characteristic));
-                });
-            }
-
-            await this.app.converter.convertToHomey(characteristic, getCharacteristicControl(characteristic).value, options)
-                .then(async value => this.setCapabilityValue(capability, value))
-                .catch(err => console.log(err));
+        } else {
+            // console.log('no Capability', capability);
+            await this.addCapability(capability);
+            capabilityOptions = {};
         }
+
+        this.links.push({ capability: capability, characteristic: characteristic })
+
+        const options = {
+            ...capabilityOptions,
+            ...characteristicOptions,
+        };
+
+        await this.setCapabilityOptions(capability, options);
+        if (getCharacteristicControl(characteristic).write) {
+            this.registerCapabilityListener(capability, async value => {
+                const { aId, sId, cId } = characteristic;
+                await this.app.converter.convertFromHomey(characteristic, value, options)
+                    .then(value => this.app.client.characteristic.value(aId, sId, cId, value, characteristic));
+            });
+        }
+
+        await this.app.converter.convertToHomey(characteristic, getCharacteristicControl(characteristic).value, options)
+            .then(async value => this.setCapabilityValue(capability, value))
+            .catch(err => console.log(err));
+    }
+
+    async makeCharacteristicCapabilities(characteristic: CharacteristicMessage) {
+        let capability = this.app.converter.getCapabilityByCharacteristicType(getCharacteristicControl(characteristic).type);
+        if (!capability) return;
+        await this.makeCharacteristicWithNameCapabilities(characteristic, capability)        
     }
 }

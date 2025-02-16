@@ -122,6 +122,42 @@
             "filter": "driver_id=light"
           }
         ]
+      },
+      {
+        "id": "contact_sensor_open",
+        "highlight": true,
+        "title": "Контакный сенсор открыт",
+        "titleFormatted": "Контакный сенсор открыт: [[contact_sensor]]",
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=sensor"
+          },
+          {
+            "type": "autocomplete",
+            "name": "contact_sensor",
+            "title": "Контакный сенсор"
+          }
+        ]
+      },
+      {
+        "id": "contact_sensor_close",
+        "highlight": true,
+        "title": "Контакный сенсор закрыт",
+        "titleFormatted": "Контакный сенсор закрыт: [[contact_sensor]]",
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=sensor"
+          },
+          {
+            "type": "autocomplete",
+            "name": "contact_sensor",
+            "title": "Контакный сенсор"
+          }
+        ]
       }
     ]
   },

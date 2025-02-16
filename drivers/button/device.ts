@@ -19,7 +19,7 @@ class ButtonDevice extends SprutHubDevice {
             if (c.aId !== data.aid) continue;
             const characteristic = this.linkedServices?.find(serivece => serivece.sId === c.sId && serivece.aId === c.aId)?.characteristics?.find(char => char.cId === c.cId);
             if (!characteristic) return;
-            console.log('onButtonClickEvent 2');
+            console.log('onButtonClickEvent 2', c);
 
             if (getCharacteristicControl(characteristic).type == 'ProgrammableSwitchEvent') {
                 await this.homey.flow.getDeviceTriggerCard('button_click').trigger(this, {}, {});
