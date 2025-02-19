@@ -30,9 +30,6 @@ export class SprutHubDevice extends Homey.Device {
             this.error(error);
         }
         
-
-        // this.log('SprutHubDevice done makeCapabilities');
-
         const batteryService = await (this.driver as SprutHubDriver).getServiceWithType(data.aid, 'BatteryService');
         if (batteryService) {
             this.linkedServices.push(batteryService);
@@ -45,14 +42,41 @@ export class SprutHubDevice extends Homey.Device {
             console.log
             await this.setAvailable()
         } else {
-            await this.setUnavailable('device offline');
+            await this.setUnavailable('device offline init');
         }
 
         const accessoryInformation = await (this.driver as SprutHubDriver).getServiceWithType(data.aid, 'AccessoryInformation')
         const room = accessoryInformation?.characteristics?.find(c => c.control?.type === "C_Room")?.control?.value.stringValue
         if (room) {
-            this.setSettings({room: room})
+            await this.setSettings({room: room});
         }
+
+        const manufacturer = accessoryInformation?.characteristics?.find(c => c.control?.type === "Manufacturer")?.control?.value.stringValue
+        if (manufacturer) {
+            await this.setSettings({manufacturer: manufacturer});
+
+        }
+
+        const model = accessoryInformation?.characteristics?.find(c => c.control?.type === "Model")?.control?.value.stringValue
+        if (model) {
+            await this.setSettings({model: model})
+        }
+
+        const name = accessoryInformation?.characteristics?.find(c => c.control?.type === "Name")?.control?.value.stringValue
+        if (name) {
+            await this.setSettings({name: name})
+        }
+
+        const serialNumber = accessoryInformation?.characteristics?.find(c => c.control?.type === "SerialNumber")?.control?.value.stringValue
+        if (serialNumber) {
+            await this.setSettings({serialNumber: serialNumber})
+        }
+
+        const firmware = accessoryInformation?.characteristics?.find(c => c.control?.type === "FirmwareRevision")?.control?.value.stringValue
+        if (firmware) {
+            await this.setSettings({firmware: firmware})
+        }
+
     }
 
     subscribeCharacteristicsUpdate() {

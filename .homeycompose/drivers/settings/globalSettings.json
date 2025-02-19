@@ -13,6 +13,51 @@
         "en": "Room",
         "ru": "Комната"
       }
+    },
+    {
+      "id": "manufacturer",
+      "type": "label",
+      "value": "",
+      "label": {
+        "en": "Manufacturer",
+        "ru": "Производитель"
+      }
+    },
+    {
+      "id": "model",
+      "type": "label",
+      "value": "",
+      "label": {
+        "en": "Model",
+        "ru": "Модель"
+      }
+    },
+    {
+      "id": "name",
+      "type": "label",
+      "value": "",
+      "label": {
+        "en": "Name",
+        "ru": "Имя"
+      }
+    },
+    {
+      "id": "serialNumber",
+      "type": "label",
+      "value": "",
+      "label": {
+        "en": "Serial Number",
+        "ru": "Серийный номер"
+      }
+    },
+    {
+      "id": "firmware",
+      "type": "label",
+      "value": "",
+      "label": {
+        "en": "Firmware Revision",
+        "ru": "Версия прошивки"
+      }
     }
   ]
 }
