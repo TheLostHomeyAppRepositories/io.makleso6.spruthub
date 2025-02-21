@@ -20,9 +20,8 @@
     "homey:manager:api"
   ],
   "images": {
-    "small": "/assets/images/small.png",
     "large": "/assets/images/large.png",
-    "xlarge": "/assets/images/xlarge.png"
+    "small": "/assets/images/small.png"
   },
   "author": {
     "name": "Maxim Kolesnik",
