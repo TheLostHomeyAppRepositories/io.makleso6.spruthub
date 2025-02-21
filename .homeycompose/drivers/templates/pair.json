@@ -2,6 +2,10 @@
   "icon": "{{driverAssetsPath}}/icon.svg",
   "pair": [
     {
+      "id": "starting",
+      "template": "loading"
+  },
+    {
       "id": "login_credentials",
       "template": "login_credentials",
       "options": {
