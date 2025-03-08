@@ -21,10 +21,12 @@ export class SprutHubDevice extends Homey.Device {
         const data = this.getData()
 
         try {
-            const baseService = await (this.driver as SprutHubDriver).getService(data.aid, data.sid);
-            if (baseService) {
-                this.linkedServices.push(baseService);
-                await this.makeCapabilities(baseService);
+            if (data.aid, data.sid) {
+                const baseService = await (this.driver as SprutHubDriver).getService(data.aid, data.sid);
+                if (baseService) {
+                    this.linkedServices.push(baseService);
+                    await this.makeCapabilities(baseService);
+                }
             }
         } catch (error) {
             this.error(error);
