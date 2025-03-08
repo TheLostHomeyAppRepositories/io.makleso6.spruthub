@@ -163,7 +163,6 @@ export class SprutHubDevice extends Homey.Device {
                 capabilityOptions = {};
             }
         } else {
-            // console.log('no Capability', capability);
             await this.addCapability(capability);
             capabilityOptions = {};
         }
