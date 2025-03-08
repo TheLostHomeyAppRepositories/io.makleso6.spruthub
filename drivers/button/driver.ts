@@ -24,9 +24,6 @@ class ButtonDriver extends SprutHubDriver {
                 if (!(args.button)) {
                     return [];
                 }
-                console.log(args.button);
-                // console.log(args);
-
                 const device = args.device as SprutHubDevice;
                 const data = device.getData()
                 const service = await (device.driver as SprutHubDriver).getService(args.button.aid, args.button.sid);
@@ -49,8 +46,6 @@ class ButtonDriver extends SprutHubDriver {
                 }) || [];
             })
             .registerRunListener(async (args, state) => {
-                console.log('*** state', state);
-
                 if (state.aId === args.click_type.aId && state.sId === args.click_type.sId && state.cId === args.click_type.cId) {
                     return Object.values(state.control.value)[0] === Object.values(args.click_type.value.value)[0];
                 }
