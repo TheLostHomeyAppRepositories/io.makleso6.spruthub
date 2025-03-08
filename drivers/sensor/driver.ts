@@ -52,8 +52,6 @@ class SensorDriver extends SprutHubDriver {
             'LeakSensor'
         ]
 
-        // return await this.getDevicesWithTypes(types);
-
         const devices: any[] = [];
 
         const allAccessories = await this.getAccessories(false);
@@ -61,7 +59,6 @@ class SensorDriver extends SprutHubDriver {
         allAccessories.forEach(accessory => {
             accessory.services?.forEach(service => {
                 if (types.includes(service.type)) {
-                    // const accessoryInformation = await (this.driver as SprutHubDriver).getServiceWithType(data.aid, 'AccessoryInformation')
                     const exists = devices.some(device => device.data.aid === accessory.id)
 
                     if (!exists) {
@@ -70,12 +67,7 @@ class SensorDriver extends SprutHubDriver {
                 }
             });
         })
-
-        console.log(devices);
-
-        // return [];
         return devices;
-        /// devices.push({ name: service.name, data: { aid: accessory.id, sid: service.sId } });
 
     }
 }

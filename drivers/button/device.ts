@@ -1,10 +1,18 @@
-import { getCharacteristicControl } from "../../lib/objects";
 import { SprutHubDevice } from "../SprutHubDevice";
+import { SprutHubDriver, CapabilityLinks} from "../SprutHubDriver";
+import { getCharacteristicControl } from "../../lib/objects";
 
 class ButtonDevice extends SprutHubDevice {
-    
+
     async onInit() {
         await super.onInit()
+
+        const data = this.getData()
+
+        const services = await (this.driver as SprutHubDriver).getServices(data.aid);
+        const filter = services?.filter(service => service.type === 'StatelessProgrammableSwitch')
+        this.linkedServices = filter ?? [];
+
         this.app.client.subscribeCharacteristicsEvent(this.onButtonClickEvent);
     }
 
@@ -19,11 +27,10 @@ class ButtonDevice extends SprutHubDevice {
             if (c.aId !== data.aid) continue;
             const characteristic = this.linkedServices?.find(serivece => serivece.sId === c.sId && serivece.aId === c.aId)?.characteristics?.find(char => char.cId === c.cId);
             if (!characteristic) return;
-            console.log('onButtonClickEvent 2', c);
+            console.log(characteristic);
 
             if (getCharacteristicControl(characteristic).type == 'ProgrammableSwitchEvent') {
-                await this.homey.flow.getDeviceTriggerCard('button_click').trigger(this, {}, {});
-                await this.homey.flow.getDeviceTriggerCard('button_clicks').trigger(this, {}, c);
+                await this.homey.flow.getDeviceTriggerCard('multy_button_clicks').trigger(this, {}, c);
 
             }
         }

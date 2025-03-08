@@ -1,6 +1,12 @@
 import Homey from "homey";
 import { SprutHub } from "../app";
-import { ServiceMessage } from "../lib/objects";
+import { ServiceMessage, CharacteristicMessage } from "../lib/objects";
+
+export type CapabilityLinks = {
+    capability: string
+    service: ServiceMessage,
+    characteristic: CharacteristicMessage
+};
 
 export class SprutHubDriver extends Homey.Driver {
     app!: SprutHub;

@@ -1,13 +1,6 @@
 import { SprutHubDevice } from "../SprutHubDevice";
-import { ServiceMessage, CharacteristicMessage, getCharacteristicControl } from "../../lib/objects";
-import { SprutHubDriver } from "../SprutHubDriver";
-
-
-type CapabilityLinks = {
-    capability: string
-    service: ServiceMessage,
-    characteristic: CharacteristicMessage
-};
+import { SprutHubDriver, CapabilityLinks } from "../SprutHubDriver";
+import { getCharacteristicControl } from "../../lib/objects";
 
 class SensorDevice extends SprutHubDevice {
     
