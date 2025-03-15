@@ -1,21 +1,21 @@
 {
-    "class": "light",
-    "name": {
-      "en": "Lights",
-      "ru": "Лампочки"
-    },
-    "images": {
-      "small": "{{ driverAssetsPath }}/images/small.png",
-      "large": "{{ driverAssetsPath }}/images/large.png",
-      "xlarge": "{{ driverAssetsPath }}/images/xlarge.png"
-    },
-    "icons": [
-      {
-        "system": "lightbulb"
-      }
-    ],
-    "capabilities": [],
-    "$extends": [
-      "pair"
-    ]
+  "class": "light",
+  "name": {
+    "en": "Lights",
+    "ru": "Лампочки"
+  },
+  "images": {
+    "small": "{{ driverAssetsPath }}/images/small.png",
+    "large": "{{ driverAssetsPath }}/images/large.png",
+    "xlarge": "{{ driverAssetsPath }}/images/xlarge.png"
+  },
+  "icons": [
+    {
+      "system": "lightbulb"
+    }
+  ],
+  "capabilities": [],
+  "$extends": [
+    "pair"
+  ]
 }

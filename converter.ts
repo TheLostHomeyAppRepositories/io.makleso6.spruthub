@@ -130,63 +130,6 @@ export const CUSTOM_CAPABILITIES: {
 
 export const CAPABILITIES = { ...HOMEY_CAPABILITIES, ...CUSTOM_CAPABILITIES };
 
-export const DEVICE_OPTIONS: {
-    [model: string]: {
-        hasIcon?: boolean,
-        batteries?: string[]
-    }
-} = {
-    "MFKZQ01LM": { hasIcon: true, batteries: ["CR2450"] },
-    "AAQS-S01": { hasIcon: true, batteries: ["CR2450", "CR2450"] },
-    "DJT11LM": { hasIcon: true, batteries: ["CR2032"] },
-    "GZCGQ01LM": { hasIcon: true, batteries: ["CR2032"] },
-    "JTQJ-BF-01LM/BW": { hasIcon: true, batteries: ["CR123A"] },
-    "JTYJ-GD-01LM/BW": { hasIcon: true, batteries: ["CR123A"] },
-    "LLKZMK11LM": { hasIcon: true },
-    "MCCGQ01LM": { hasIcon: true, batteries: ["CR1632"] },
-    "MCCGQ11LM": { hasIcon: true, batteries: ["CR1632"] },
-    "QBCZ11LM": { hasIcon: true },
-    "QBKG03LM": { hasIcon: true },
-    "QBKG04LM": { hasIcon: true },
-    "QBKG11LM": { hasIcon: true },
-    "QBKG12LM": { hasIcon: true },
-    "QBKG21LM": { hasIcon: true },
-    "QBKG22LM": { hasIcon: true },
-    "QBKG23LM": { hasIcon: true },
-    "QBKG24LM": { hasIcon: true },
-    "QBKG25LM": { hasIcon: true },
-    "QBKG26LM": { hasIcon: true },
-    "RTCGQ01LM": { hasIcon: true, batteries: ["CR2450"] },
-    "RTCGQ11LM": { hasIcon: true, batteries: ["CR2450"] },
-    "SJCGQ11LM": { hasIcon: true, batteries: ["CR2032"] },
-    "SP-EUC01": { hasIcon: true },
-    "SSM-U01": { hasIcon: true },
-    "SSM-U02": { hasIcon: true },
-    "VOCKQJK11LM": { hasIcon: true, batteries: ["CR2450", "CR2450"] },
-    "WRS-R02": { hasIcon: true, batteries: ["CR2032"] },
-    "WS-EUK01": { hasIcon: true },
-    "WS-EUK02": { hasIcon: true },
-    "WS-EUK03": { hasIcon: true },
-    "WS-EUK04": { hasIcon: true },
-    "WSDCGQ01LM": { hasIcon: true, batteries: ["CR2032"] },
-    "WSDCGQ11LM": { hasIcon: true, batteries: ["CR2032"] },
-    "WXCJKG11LM": { hasIcon: true, batteries: ["CR2032"] },
-    "WXCJKG12LM": { hasIcon: true, batteries: ["CR2032"] },
-    "WXCJKG13LM": { hasIcon: true, batteries: ["CR2032"] },
-    "WXKG01LM": { hasIcon: true, batteries: ["CR2032"] },
-    "WXKG02LM": { hasIcon: true, batteries: ["CR2032"] },
-    "WXKG03LM": { hasIcon: true, batteries: ["CR2032"] },
-    "WXKG06LM": { hasIcon: true, batteries: ["CR2032"] },
-    "WXKG07LM": { hasIcon: true, batteries: ["CR2032"] },
-    "WXKG11LM": { hasIcon: true, batteries: ["CR2032"] },
-    "WXKG12LM": { hasIcon: true, batteries: ["CR2032"] },
-    "ZNCLDJ11LM": { hasIcon: true },
-    "ZNCLDJ12LM": { hasIcon: true, batteries: ["INTERNAL"] },
-    "ZNCZ02LM": { hasIcon: true },
-    "ZNCZ04LM": { hasIcon: true },
-    "ZNLDP12LM": { hasIcon: true }
-};
-
 const VALID_VALUES_TYPES: string[] = [
     "TargetHeatingCoolingState",
     "SecuritySystemTargetState",

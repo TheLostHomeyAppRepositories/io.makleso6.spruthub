@@ -9,9 +9,9 @@ class LightDriver extends SprutHubDriver {
         const card = this.homey.flow.getDeviceTriggerCard("capability_changed")
         card.registerRunListener((args, state) => {
 
-                console.log('capability_changed');
-                return true;
-            });
+            console.log('capability_changed');
+            return true;
+        });
 
     }
 
