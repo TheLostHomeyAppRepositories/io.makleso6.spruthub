@@ -5,20 +5,6 @@ import { getCharacteristicControl } from "../../lib/objects";
 class LightDevice extends SprutHubDevice {
     async onInit() {
         await super.onInit()
-
-        if (!this.hasCapability('light_mode')) {
-            if (this.hasCapability('light_temperature') && this.hasCapability('light_hue')) {
-                this.addCapability('light_mode');
-                this.registerCapabilityListener('light_mode', async value => {
-                    console.log('*** change light mode to', value);
-                });
-            }
-        } else {
-
-            this.registerCapabilityListener('light_mode', async value => {
-                console.log('*** change light mode to', value);
-            });
-        }
         this.app.client.subscribeCharacteristicsEvent(this.capabilityChanged);
     }
 
@@ -44,6 +30,7 @@ class LightDevice extends SprutHubDevice {
                 await this.app.converter.convertFromHomey(link.characteristic, lightTemperature, {})
                 .then(value => this.app.client.characteristic.value(link.characteristic.aId, link.characteristic.sId, link.characteristic.cId, value, link.characteristic));
             }
+            await this.setCapabilityValue('light_temperature', lightTemperature);
         }
     }
 

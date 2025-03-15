@@ -14,7 +14,9 @@
       "system": "lightbulb"
     }
   ],
-  "capabilities": [],
+  "capabilities": [
+    "light_mode"
+  ],
   "$extends": [
     "pair"
   ]
