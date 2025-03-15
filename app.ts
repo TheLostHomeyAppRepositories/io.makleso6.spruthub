@@ -32,6 +32,7 @@ export class SprutHub extends Homey.App {
       await this.client.connect(hubInfo);
       await this.client.loadDevices();
     }
+    this.registerFlowActions();
   }
 
   async testConnection() {
@@ -73,6 +74,19 @@ export class SprutHub extends Homey.App {
     } catch {
       return false;
     }
+  }
+
+  // FLOW ACTIONS =====================================================================================
+  async registerFlowActions() {
+    this.homey.flow.getActionCard('lightSetTemperatureRelative').registerRunListener(async (args, state) => {
+      try {
+        await args.device.setTemperatureRelative(args);
+        return true;
+      } catch (error) {
+        this.error("Error executing flowAction 'lightSetTemperatureRelative': ", error);
+        throw error;
+      }
+    });
   }
 
 }

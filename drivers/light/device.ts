@@ -1,6 +1,6 @@
 import { SprutHubDevice } from "../SprutHubDevice";
 import { SprutHub } from "../../app";
-import {  getCharacteristicControl } from "../../lib/objects";
+import { getCharacteristicControl } from "../../lib/objects";
 
 class LightDevice extends SprutHubDevice {
     async onInit() {
@@ -14,6 +14,7 @@ class LightDevice extends SprutHubDevice {
                 });
             }
         } else {
+
             this.registerCapabilityListener('light_mode', async value => {
                 console.log('*** change light mode to', value);
             });
@@ -24,6 +25,26 @@ class LightDevice extends SprutHubDevice {
     async onDeleted() {
         super.onDeleted();
         this.app.client.unsubscribeCharacteristicsEvent(this.capabilityChanged);
+    }
+
+    async setTemperatureRelative(args: any) {
+        if (args.light_temperature_rel) {
+            let lightTemperature = this.getCapabilityValue('light_temperature');
+            lightTemperature += args.light_temperature_rel;
+            if (lightTemperature > 1) {
+                lightTemperature = 1;
+            }
+            if (lightTemperature < 0) {
+                lightTemperature = 0;
+            }
+            args["light_temperature"] = lightTemperature;
+
+            const link =  this.links.find(l => l.capability === 'light_temperature')
+            if (link) {
+                await this.app.converter.convertFromHomey(link.characteristic, lightTemperature, {})
+                .then(value => this.app.client.characteristic.value(link.characteristic.aId, link.characteristic.sId, link.characteristic.cId, value, link.characteristic));
+            }
+        }
     }
 
     capabilityChanged = async (characteristics: any) => {
@@ -79,4 +100,3 @@ class LightDevice extends SprutHubDevice {
 }
 
 module.exports = LightDevice;
-
