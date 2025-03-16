@@ -23,6 +23,8 @@ export const CHARACTERISTIC_OPTIONS: {
     }
 };
 
+
+
 export const HOMEY_CAPABILITIES: {
     [capability: string]: string[]
 } = {
@@ -164,6 +166,23 @@ export type Capability = {
     }[]
 }
 
+export const DEVICE_ICON: {
+    [icon: string]: string[]
+} = {
+    '915005987001': ['915005987001'],
+    'ikea_remote': ['TRADFRI remote control'] ,
+    'ikea_on_off': ['TRADFRI on/off switch'],
+    'aqara_fp': ['AS074', 'AS037'],
+    'aqara_leak':['AS010'],
+    'aqara_temp':['AS008', 'WSDCGQ11LM'],
+    'aqara_p2_contact':['AS039', 'MCCGQ13LM'],
+    'aqara_contact':['AS006', 'MCCGQ11LM'],
+    'aqara_motion':['RTCGQ13LM', 'RTCGQ11LM'],
+    'aqara_wierless':['WXKG12LM', 'AR001'],
+    'aqara_smoke':['JTYJ-GD-01LM'],
+    'VINDSTYRKA': ['VINDSTYRKA']
+}
+
 export class Converter {
     capabilities!: {
         [capability: string]: Capability
@@ -177,6 +196,24 @@ export class Converter {
             ...customCapabilities
         };
     }    
+
+    deviceIcon(model: string): string | undefined { 
+        const lowerModel = model.toLowerCase();
+        // console.log(lowerModel);
+
+        const iconKey = Object.keys(DEVICE_ICON).find(key => 
+            DEVICE_ICON[key].some(value => {
+                return lowerModel.includes(value.toLowerCase()) || value.toLowerCase() === lowerModel
+             })
+        );
+
+        
+
+        if (iconKey) {
+            // console.log('***', iconKey);
+            return '../../../assets/icons/' + iconKey + '.svg';
+        }
+    }
 
     async convertToHomey(c: CharacteristicMessage, v: any, capabilityOptions: any) {
         const control = getCharacteristicControl(c);

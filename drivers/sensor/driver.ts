@@ -1,5 +1,5 @@
-import { SprutHubDriver } from "../SprutHubDriver";
-import { SprutHubDevice} from "../SprutHubDevice";
+import { SprutHubDriver, Device } from "../SprutHubDriver";
+import { SprutHubDevice } from "../SprutHubDevice";
 
 class SensorDriver extends SprutHubDriver {
     async onInit() {
@@ -37,7 +37,8 @@ class SensorDriver extends SprutHubDriver {
             });
     }
 
-    async onPairListDevices() {
+    
+    async onPairListDevices(): Promise<Device[]> {
         const types = [
             'HumiditySensor',
             'TemperatureSensor',
@@ -50,25 +51,46 @@ class SensorDriver extends SprutHubDriver {
             'OccupancySensor',
             'MotionSensor',
             'LeakSensor'
-        ]
+        ];
+        
+        return this.getAccessoryDevices(types);
 
-        const devices: any[] = [];
-
-        const allAccessories = await this.getAccessories(false);
-
-        allAccessories.forEach(accessory => {
-            accessory.services?.forEach(service => {
-                if (types.includes(service.type)) {
-                    const exists = devices.some(device => device.data.aid === accessory.id)
-
-                    if (!exists) {
-                        devices.push({ name: accessory.name, data: { aid: accessory.id } });
-                    }
-                }
-            });
-        })
-        return devices;
-
+        // const devices: Device[] = [];
+        // const uniqueDeviceIds = new Set<number>(); // или Set<string>, если accessory.id — строка
+    
+    
+        // // Используем for...of для корректной работы с await
+        // for (const accessory of allAccessories) {
+        //     for (const service of accessory.services || []) {
+        //         if (types.includes(service.type)) {
+        //             // Проверяем, существует ли устройство в uniqueDeviceIds
+        //             if (!uniqueDeviceIds.has(accessory.id)) {
+        //                 uniqueDeviceIds.add(accessory.id); // Добавляем ID в Set
+    
+        //                 // Получаем информацию об устройстве
+        //                 const accessoryInfo = await this.getServiceWithType(accessory.id, 'AccessoryInformation');
+        //                 const model = this.getStringValue(accessoryInfo, "Model");
+        //                 const manufacturer = this.getStringValue(accessoryInfo, "Manufacturer");
+        //                 const icon = this.app.converter.deviceIcon(model);
+    
+        //                 console.log(manufacturer, model, accessory.name);
+        //                 const device: Device = {
+        //                     name: accessory.name,
+        //                     data: { aid: accessory.id },
+        //                 };
+    
+        //                 if (icon) {
+        //                     device.icon = icon;
+        //                 }
+    
+        //                 devices.push(device);
+        //             }
+        //             break; // Прерываем цикл по сервисам, так как устройство уже добавлено
+        //         }
+        //     }
+        // }
+    
+        // return devices;
     }
 }
 

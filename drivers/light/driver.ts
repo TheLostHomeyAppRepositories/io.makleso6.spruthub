@@ -1,4 +1,5 @@
 import { SprutHubDriver } from "../SprutHubDriver";
+import { AccessoryMessage, CharacteristicMessage, getCharacteristicControl, ServiceMessage } from "../../lib/objects";
 
 class LightDriver extends SprutHubDriver {
 
@@ -15,9 +16,11 @@ class LightDriver extends SprutHubDriver {
 
     }
 
-    async onPairListDevices() {
-        return await this.getDevicesWithType('Lightbulb')
+    async onPairListDevices() {        
+        return await this.getDevicesWithType('Lightbulb');
     }
+
+    
 }
 
 module.exports = LightDriver;

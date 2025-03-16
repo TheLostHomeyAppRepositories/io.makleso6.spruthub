@@ -67,22 +67,24 @@ class ButtonDriver extends SprutHubDriver {
             'StatelessProgrammableSwitch'
         ]
 
-        const devices: any[] = [];
+        return this.getAccessoryDevices(types);
 
-        const allAccessories = await this.getAccessories(false);
+        // const devices: any[] = [];
 
-        allAccessories.forEach(accessory => {
-            accessory.services?.forEach(service => {
-                if (types.includes(service.type)) {
-                    const exists = devices.some(device => device.data.aid === accessory.id)
-                    if (!exists) {
-                        devices.push({ name: accessory.name, data: { aid: accessory.id } });
-                    }
-                }
-            });
-        })
+        // const allAccessories = await this.getAccessories(false);
 
-        return devices;
+        // allAccessories.forEach(accessory => {
+        //     accessory.services?.forEach(service => {
+        //         if (types.includes(service.type)) {
+        //             const exists = devices.some(device => device.data.aid === accessory.id)
+        //             if (!exists) {
+        //                 devices.push({ name: accessory.name, data: { aid: accessory.id } });
+        //             }
+        //         }
+        //     });
+        // })
+
+        // return devices;
     }
 }
 

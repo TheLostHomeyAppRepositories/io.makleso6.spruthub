@@ -10,6 +10,7 @@
         "xlarge": "{{ driverAssetsPath }}/images/xlarge.png"
     },
     "capabilities": [],
-    "$extends": [ "pair" ]
-
+    "$extends": [
+        "pair"
+    ]
 }

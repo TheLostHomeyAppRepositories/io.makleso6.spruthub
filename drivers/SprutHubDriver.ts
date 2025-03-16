@@ -8,13 +8,18 @@ export type CapabilityLinks = {
     characteristic: CharacteristicMessage
 };
 
+export interface Device {
+    name: string;
+    data: any;
+    icon?: string;
+}
+
 export class SprutHubDriver extends Homey.Driver {
     app!: SprutHub;
 
     async onInit() {
         this.log('SprutHubDriver has been initialized');
         this.app = this.homey.app as SprutHub;
-
     }
 
     async onPair(session: Homey.Driver.PairSession) {
@@ -93,20 +98,89 @@ export class SprutHubDriver extends Homey.Driver {
         return services;
 
     }
+
+    async getAccessoryDevices(types: string[]): Promise<Device[]> {
+
+        const devices: Device[] = [];
+        const uniqueDeviceIds = new Set<number>(); // или Set<string>, если accessory.id — строка
+    
+        const allAccessories = await this.getAccessories(false);
+    
+        // Используем for...of для корректной работы с await
+        for (const accessory of allAccessories) {
+            for (const service of accessory.services || []) {
+                if (types.includes(service.type)) {
+                    // Проверяем, существует ли устройство в uniqueDeviceIds
+                    if (!uniqueDeviceIds.has(accessory.id)) {
+                        uniqueDeviceIds.add(accessory.id); // Добавляем ID в Set
+    
+                        // Получаем информацию об устройстве
+                        const accessoryInfo = await this.getServiceWithType(accessory.id, 'AccessoryInformation');
+                        const model = this.getStringValue(accessoryInfo, "Model");
+                        const manufacturer = this.getStringValue(accessoryInfo, "Manufacturer");
+                        const room = this.getStringValue(accessoryInfo, "C_Room");
+                        const icon = this.app.converter.deviceIcon(model);
     
 
-    async getDevicesWithType(type: String) {
-        const accessories = await this.getAccessories(true);
-        const devices: {}[] = [];
-        
-        accessories.forEach(accessory => {
-            accessory.services?.forEach(service => {
-                if (service.type === type) {
-                    devices.push({ name: service.name, data: { aid: accessory.id, sid: service.sId } });
+
+                        console.log(manufacturer, model, accessory.name, room);
+                        const device: Device = {
+                            name: accessory.name,
+                            data: { aid: accessory.id },
+                        };
+    
+                        if (icon) {
+                            device.icon = icon;
+                        }
+    
+                        devices.push(device);
+                    }
+                    break; // Прерываем цикл по сервисам, так как устройство уже добавлено
                 }
-            });
-        })
-        return devices
+            }
+        }
+        return devices;
+    }
+    
+    async getDevicesWithType(type: string): Promise<Device[]> {
+        const accessories = await this.getAccessories(true);
+        const devices: Device[] = [];
+    
+        // Используем for...of для корректной работы с await
+        for (const accessory of accessories) {
+            for (const service of accessory.services || []) {
+                if (service.type === type) {
+                    try {
+                        // Получаем информацию об устройстве
+                        const accessoryInfo = await this.getServiceWithType(accessory.id, 'AccessoryInformation');
+                        const model = this.getStringValue(accessoryInfo, "Model");
+                        const icon = this.app.converter.deviceIcon(model);
+    
+                        const device: Device = {
+                            name: service.name,
+                            data: {
+                                aid: accessory.id,
+                                sid: service.sId,
+                            },
+                        };
+    
+                        if (icon) {
+                            device.icon = icon;
+                        }
+    
+                        devices.push(device);
+                    } catch (error) {
+                        console.error(`Error processing accessory ${accessory.id}:`, error);
+                    }
+                }
+            }
+        }
+    
+        return devices;
+    }
+
+    getStringValue(servive: ServiceMessage | undefined, type: string) {
+        return servive?.characteristics?.find(c => c.control?.type === type)?.control?.value.stringValue
     }
 
     async getDevicesWithTypes(types: string[]) {

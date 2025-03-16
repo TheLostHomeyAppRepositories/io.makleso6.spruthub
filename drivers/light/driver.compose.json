@@ -9,14 +9,7 @@
     "large": "{{ driverAssetsPath }}/images/large.png",
     "xlarge": "{{ driverAssetsPath }}/images/xlarge.png"
   },
-  "icons": [
-    {
-      "system": "lightbulb"
-    }
-  ],
-  "capabilities": [
-    "light_mode"
-  ],
+  "capabilities": [],
   "$extends": [
     "pair"
   ]

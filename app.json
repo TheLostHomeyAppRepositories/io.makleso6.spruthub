@@ -708,11 +708,6 @@
         "large": "{{ driverAssetsPath }}/images/large.png",
         "xlarge": "{{ driverAssetsPath }}/images/xlarge.png"
       },
-      "icons": [
-        {
-          "system": "lightbulb"
-        }
-      ],
       "capabilities": [],
       "id": "light",
       "settings": [
