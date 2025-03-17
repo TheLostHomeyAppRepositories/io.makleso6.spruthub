@@ -119,8 +119,8 @@ export class SprutHubDriver extends Homey.Driver {
                         const model = this.getStringValue(accessoryInfo, "Model");
                         const manufacturer = this.getStringValue(accessoryInfo, "Manufacturer");
                         const room = this.getStringValue(accessoryInfo, "C_Room");
-                        const icon = this.app.converter.deviceIcon(model);
-    
+                        const icon = this.app.converter.accessoryIcon(accessory);
+
 
 
                         console.log(manufacturer, model, accessory.name, room);
@@ -154,8 +154,12 @@ export class SprutHubDriver extends Homey.Driver {
                         // Получаем информацию об устройстве
                         const accessoryInfo = await this.getServiceWithType(accessory.id, 'AccessoryInformation');
                         const model = this.getStringValue(accessoryInfo, "Model");
-                        const icon = this.app.converter.deviceIcon(model);
+                        const manufacturer = this.getStringValue(accessoryInfo, "Manufacturer");
+                        const room = this.getStringValue(accessoryInfo, "C_Room");
+                        const icon = this.app.converter.accessoryIcon(accessory);
     
+                        console.log(manufacturer, model, accessory.name, room);
+
                         const device: Device = {
                             name: service.name,
                             data: {

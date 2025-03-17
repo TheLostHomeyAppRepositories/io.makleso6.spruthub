@@ -26,6 +26,8 @@ export type AccessoryMessage = {
     manufacturer: string,
     /** Модель */
     model: string,
+    /** id Модели*/
+    modelId: string,
     /** Серийный номер */
     serial: string,
     /** Версия прошивки */

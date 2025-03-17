@@ -170,17 +170,35 @@ export const DEVICE_ICON: {
     [icon: string]: string[]
 } = {
     '915005987001': ['915005987001'],
-    'ikea_remote': ['TRADFRI remote control'] ,
+    '929003053101': ['929003053101'],
+    '3402831P7': ['3402831P7'],
+    'LCA001': ['LCA001'],
+    'LCG002': ['LCG002', '345lm'],
+
+    'ikea_remote': ['TRADFRI remote control'],
     'ikea_on_off': ['TRADFRI on/off switch'],
     'aqara_fp': ['AS074', 'AS037'],
-    'aqara_leak':['AS010'],
-    'aqara_temp':['AS008', 'WSDCGQ11LM'],
-    'aqara_p2_contact':['AS039', 'MCCGQ13LM'],
-    'aqara_contact':['AS006', 'MCCGQ11LM'],
-    'aqara_motion':['RTCGQ13LM', 'RTCGQ11LM'],
-    'aqara_wierless':['WXKG12LM', 'AR001'],
-    'aqara_smoke':['JTYJ-GD-01LM'],
-    'VINDSTYRKA': ['VINDSTYRKA']
+    'aqara_leak': ['AS010'],
+    'aqara_l350': ['AL018'],
+    'aqara_mx480': ['XL006'],
+    'aqara_mx960': ['XL004'],
+    'aqara_spotlight_t3': ['AL115'],
+    'aqara_light_t2': ['AL186'],
+    'aqara_led_driver': ['AL010'],
+    'zhimi.airfresh.va2': ['zhimi.airfresh.va2', 'zhimi.airfresh.va4'],
+    'aqara_relay': ['AU001', 'AK027'],
+    'aqara_thermostat_e1': ['AA006'],
+    'aqara_temp': ['AS008', 'WSDCGQ11LM'],
+    'aqara_p2_contact': ['AS039', 'MCCGQ13LM'],
+    'aqara_contact': ['AS006', 'MCCGQ11LM'],
+    'aqara_motion': ['RTCGQ13LM', 'RTCGQ11LM'],
+    'aqara_wierless': ['WXKG12LM', 'AR001'],
+    'aqara_smoke': ['JTYJ-GD-01LM'],
+    'aqara_plug_round': [],// need import
+    'aqara_plug_sq': [],// need import
+    'VINDSTYRKA': ['VINDSTYRKA'],
+    'INSPELNING': ['INSPELNING'],
+    'thermostat': ['Cool.stick']
 }
 
 export class Converter {
@@ -197,18 +215,24 @@ export class Converter {
         };
     }    
 
-    deviceIcon(model: string): string | undefined { 
-        const lowerModel = model.toLowerCase();
+    getStringValue(servive: ServiceMessage | undefined, type: string) {
+        return servive?.characteristics?.find(c => c.control?.type === type)?.control?.value.stringValue
+    }
+
+    accessoryIcon(accessoryMessage: AccessoryMessage): string | undefined { 
+        const lowerModelId = accessoryMessage.modelId.toLowerCase();
+
+
+        const accessoryInfo = accessoryMessage?.services?.find(s => s.type === 'AccessoryInformation');
+        const lowerModel = this.getStringValue(accessoryInfo, "Model").toLowerCase();;
+
         // console.log(lowerModel);
 
         const iconKey = Object.keys(DEVICE_ICON).find(key => 
             DEVICE_ICON[key].some(value => {
-                return lowerModel.includes(value.toLowerCase()) || value.toLowerCase() === lowerModel
+                return lowerModel.includes(value.toLowerCase()) || value.toLowerCase() === lowerModel || lowerModelId.includes(value.toLowerCase()) || value.toLowerCase() === lowerModelId
              })
         );
-
-        
-
         if (iconKey) {
             // console.log('***', iconKey);
             return '../../../assets/icons/' + iconKey + '.svg';
